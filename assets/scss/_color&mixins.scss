@@ -1,3 +1,29 @@
+$primary-color: #8ec5fc;
+$secondary-color: #a8e6cf;
+$accent: #ffab73;
+$text: #333333;
+$head: #4b7f52;
+$border: #e0e0e0;
+$btn: #8ec5fc;
+$btn-hover: #5dadec;
+$bg: #fafafa;
+
+$bg-gradient: linear-gradient(135deg, #a8e6cf 0%, #8ec5fc 100%);
+$bg-header: linear-gradient(90deg, #8ec5fc 0%, #a8e6cf 100%);
+
+$primary-color-dark: #3a6ea5;
+$secondary-color-dark: #2e8b57;
+$accent-dark: #121212;
+$text-dark: #eaeaea;
+$head-dark: #8acb88;
+$border-dark: #333333;
+$btn-dark: #2e8b57;
+$btn-hover-dark: #4caf50;
+$bg-dark: #121212;
+
+$bg-gradient-dark: linear-gradient(135deg, #2e8b57 0%, #3a6ea5 100%);
+$bg-header-dark: linear-gradient(90deg, #3a6ea5 0%, #2e8b57 100%);
+
 @mixin center {
   display: flex;
   align-items: center;
