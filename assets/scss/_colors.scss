@@ -1,29 +1,16 @@
-$primary-color: #8ec5fc;
-$secondary-color: #a8e6cf;
-$accent: #ffab73;
+$primary: #6a5acd;
 $text: #333333;
-$head: #4b7f52;
-$border: #e0e0e0;
-$btn: #8ec5fc;
-$btn-hover: #5dadec;
-$bg: #fafafa;
-
-$bg-gradient: linear-gradient(135deg, #a8e6cf 0%, #8ec5fc 100%);
-$bg-header: linear-gradient(0deg, #f7f7f7 0%, #cffdcba8);
-
-
+$head: #4a4e69;
+$btn: #6a5acd;
+$btn-hover: #3a3081;
+$white: #fff;
+$bg-gradient: linear-gradient(135deg, #f0f8ff, #d8bfd8);
 
 /*Dark colors*/
-$primary-color-dark: #3a6ea5;
-$secondary-color-dark: #2e8b57;
-$accent-dark: #121212;
+$primary-dark: #a093f0;
 $text-dark: #eaeaea;
-$head-dark: #8acb88;
-$border-dark: #333333;
-$btn-dark: #2e8b57;
-$btn-hover-dark: #4caf50;
-$bg-dark: #121212;
+$head-dark: #b3b3cc;
+$btn-dark: #7C83DB;
+$btn-hover-dark: #5D5FCB;
 
-$bg-gradient-dark: linear-gradient(135deg, #2e8b57 0%, #3a6ea5 100%);
-$bg-header-dark: #1F1F1F
-
+$bg-gradient-dark: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
