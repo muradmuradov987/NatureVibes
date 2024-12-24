@@ -3,10 +3,18 @@
         <section>
             <div class="container">
                 <h1 class="title">Home Content</h1>
+                <div v-if="!myStore.isLoading">
+                    <ul>
+                        <li v-for="item in myStore.appData" :key="item.id">
+                            <NuxtLink :to="`/${item.id}`">{{ item.name }}</NuxtLink>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="section__wrapper">
                     <div class="card">
                         <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
+                            <img src="~/assets/images/logo.webp" alt="">
                             <div class="card__info">
                                 Refreshing Rain
                             </div>
@@ -14,7 +22,7 @@
                     </div>
                     <div class="card">
                         <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
+                            <img src="~/assets/images/logo.webp" alt="">
                             <div class="card__info">
                                 Refreshing Rain
                             </div>
@@ -22,7 +30,7 @@
                     </div>
                     <div class="card">
                         <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
+                            <img src="~/assets/images/logo.webp" alt="">
                             <div class="card__info">
                                 Refreshing Rain
                             </div>
@@ -30,7 +38,7 @@
                     </div>
                     <div class="card">
                         <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
+                            <img src="~/assets/images/logo.webp" alt="">
                             <div class="card__info">
                                 Refreshing Rain
                             </div>
@@ -38,7 +46,15 @@
                     </div>
                     <div class="card">
                         <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
+                            <img src="~/assets/images/logo.webp" alt="">
+                            <div class="card__info">
+                                Refreshing Rain
+                            </div>
+                        </NuxtLink>
+                    </div>
+                    <div class="card">
+                        <NuxtLink to="/">
+                            <img src="~/assets/images/logo.webp" alt="">
                             <div class="card__info">
                                 Refreshing Rain
                             </div>
@@ -47,45 +63,7 @@
                 </div>
             </div>
         </section>
-        <section>
-            <div class="container">
-                <h1 class="title">Home Content</h1>
-                <div class="section__wrapper">
-                    <div class="card">
-                        <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
-                            <div class="card__info">
-                                Refreshing Rain
-                            </div>
-                        </NuxtLink>
-                    </div>
-                    <div class="card">
-                        <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
-                            <div class="card__info">
-                                Refreshing Rain
-                            </div>
-                        </NuxtLink>
-                    </div>
-                    <div class="card">
-                        <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
-                            <div class="card__info">
-                                Refreshing Rain
-                            </div>
-                        </NuxtLink>
-                    </div>
-                    <div class="card">
-                        <NuxtLink to="/">
-                            <img src="~/assets/images/11.jpg" alt="">
-                            <div class="card__info">
-                                Refreshing Rain
-                            </div>
-                        </NuxtLink>
-                    </div>
-                </div>
-            </div>
-        </section>
+
     </div>
 </template>
 
@@ -93,7 +71,9 @@
 import { useStore } from '~/store/store';
 const myStore = useStore();
 
-
+onMounted(async () => {
+    await myStore.getSoundsData();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -113,9 +93,9 @@ const myStore = useStore();
             display: flex;
             flex-wrap: wrap;
             gap: 25px;
+
             .card {
-                max-width: 270px;
-                width: 270px;
+                width: calc(25% - 20px);
                 max-height: 400px;
                 height: 400px;
                 border-top-left-radius: 18px;
@@ -174,4 +154,54 @@ const myStore = useStore();
         }
     }
 }
-</style>
+
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+    .main {
+        .section__wrapper {
+            .card {
+                width: calc(50% - 18px) !important;
+                max-height: 250px !important;
+                height: 250px !important;
+                .card__info {
+                    height: 50px !important;
+                    font-size: 18px !important;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .main {
+        .section__wrapper {
+            .card {
+                width: calc(33.33% - 18px) !important;
+            }
+        }
+    }
+
+}
+
+
+// @media (max-width: 1024px) {
+//     .card {
+//         width: calc(33.33% - 16px);
+//         /* 3 kart için genişlik */
+//     }
+// }
+
+// @media (max-width: 768px) {
+//     .card {
+//         width: calc(50% - 16px);
+//         /* 2 kart için genişlik */
+//     }
+// }
+
+// @media (max-width: 480px) {
+//     .card {
+//         width: 100%;
+//         /* 1 kart için genişlik */
+//     }
+// }</style>

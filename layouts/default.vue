@@ -1,6 +1,7 @@
 <template>
     <div class="defaultLayout" :class="{ dark: myStore.isDarkMode }">
         <layoutsHeader />
+        <uiLoading/>
         <slot />
         <div class="container">
             <h1>Footer</h1>

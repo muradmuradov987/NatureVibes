@@ -8,9 +8,15 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
- 
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: $white;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $primary;
+  }
 }
-
 
 * {
   margin: 0;
