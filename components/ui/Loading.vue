@@ -1,6 +1,5 @@
 <template>
   <div v-if="myStore.isLoading" class="loading-overlay">
-
     <div class="logo">
       <img src="~/assets/images/logo.webp" alt="">
     </div>
@@ -20,7 +19,8 @@ const myStore = useStore();
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  // background: rgba(18, 94, 2, 0.8);
+  background: linear-gradient(135deg, #333333, #8230bd, #0b6481);
   display: flex;
   align-items: center;
   justify-content: center;
