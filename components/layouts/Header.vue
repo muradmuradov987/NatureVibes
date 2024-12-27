@@ -65,7 +65,7 @@ const showLangMenu = () => {
 
 <style lang="scss" scoped>
 header {
-    background: white;
+    // background: $white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: 0.5s ease-in-out;
 
@@ -236,7 +236,9 @@ header {
     background: transparent !important;
 
     .upgradeBtn {
-        color: $primary;
+        span {
+            color: $primary;
+        }
     }
 
     .logo__container {
@@ -320,6 +322,7 @@ header {
                     padding: 4px;
                     height: 25px;
                     width: 45px;
+
                     &::before {
                         left: 4px;
                         width: 18px;
