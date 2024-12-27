@@ -1,18 +1,18 @@
 <template>
     <h1>Route ID: {{ route.params.id }}</h1>
+    <h1>Route ID: {{ route.params.cardId }}</h1>
 
-    <h1 v-if="cardDetail">Sound Name: {{ cardDetail.name }}</h1>
     <p>{{ cardDetail }}</p>
-
-
-    <div v-if="cardDetail">
-        <h1>{{ cardDetail.cardName }}</h1>
-        <div class="card__cover">
-            <img :src="cardDetail.imageUrl" alt="Card Image">
+    <div class="container">
+        <div v-if="cardDetail">
+            <h1>{{ cardDetail.cardName }}</h1>
+            <div class="card__cover">
+                <img :src="cardDetail.imageUrl" alt="Card Image">
+            </div>
         </div>
-    </div>
-    <div v-else>
-        <p>Card not found</p>
+        <div v-else>
+            <p>Card not found</p>
+        </div>
     </div>
 </template>
 
@@ -29,18 +29,15 @@ const cardDetail = ref(null);
 
 const fetchData = async () => {
     try {
-        if (!myStore.appData.length) {
-            await myStore.getSoundsData();
+        await myStore.getSoundsData();
+        const { id, cardId } = route.params;
+        const dataset = myStore.appData.find(item => item.id === parseInt(id));
+        if (dataset) {
+            cardDetail.value = dataset.card.find(c => c.cardId === parseInt(cardId));
         }
-
-        const id = parseInt(route.params.id);
-        cardDetail.value = myStore.appData.flatMap(item => item.card).find(c => c.cardId === id);
-
         if (!cardDetail.value) {
             router.push("/404");
         }
-
-
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -58,8 +55,8 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .card__cover {
-    width: 70%;
-    height: 300px;
+    width: 30%;
+    height: 400px;
 
     img {
         width: 100%;

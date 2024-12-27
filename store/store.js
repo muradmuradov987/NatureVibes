@@ -2,32 +2,36 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useStore = defineStore("store", () => {
+  //Loading
+  const isLoading = ref(true);
+  setTimeout(async () => {
+    isLoading.value = false;
+  }, 1500);
+
+
   //Dark Mode
   const isDarkMode = ref(false);
   const toggleDarkMode = () => {
     isDarkMode.value = !isDarkMode.value;
   };
 
-  const isLoading = ref(true);
+  //All Data
   const appData = ref([]);
   const getSoundsData = async () => {
-    isLoading.value = true;
+    if (appData.value.length > 0) return;
     try {
-      const data = await new Promise((resolve) => {
-        setTimeout(async () => {
-          const fetchedData = await $fetch("/api/data");
-          resolve(fetchedData);
-        }, 1000);
-      });
-      appData.value = data || [];
+      const fetchedData = await $fetch("/api/data");
+      appData.value = fetchedData || [];
     } catch (error) {
       console.error("Fetch Error:", error);
-    } finally {
-      isLoading.value = false;
     }
   };
 
+  //Auth
+  const auth = ref(false)
+
   return {
+    auth,
     isDarkMode,
     toggleDarkMode,
     isLoading,

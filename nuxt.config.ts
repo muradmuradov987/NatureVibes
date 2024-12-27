@@ -15,4 +15,11 @@ export default defineNuxtConfig({
   },
 
   modules: ["@pinia/nuxt", "@nuxt/image"],
+
+  nitro: {
+    routeRules: {
+      "/_nuxt/**": { cache: { maxAge: 3600 } }, 
+      "/images/**": { cache: { maxAge: 86400 } }, 
+    },
+  },
 });

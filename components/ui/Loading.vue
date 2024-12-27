@@ -1,5 +1,5 @@
 <template>
-  <div v-if="myStore.isLoading" class="loading-overlay">
+  <div  class="loading-overlay" v-if="myStore.isLoading" >
     <div class="logo">
       <img src="~/assets/images/logo.webp" alt="">
     </div>
@@ -10,6 +10,7 @@
 <script setup>
 import { useStore } from '~/store/store';
 const myStore = useStore();
+
 </script>
 
 <style scoped lang="scss">

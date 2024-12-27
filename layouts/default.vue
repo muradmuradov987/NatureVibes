@@ -1,7 +1,7 @@
 <template>
     <div class="defaultLayout" :class="{ dark: myStore.isDarkMode }">
+        <uiLoading />
         <layoutsHeader />
-        <uiLoading/>
         <slot />
         <div class="container">
             <h1>Footer</h1>
@@ -13,6 +13,7 @@
 <script setup>
 import { useStore } from '~/store/store';
 const myStore = useStore();
+
 
 </script>
 

@@ -210,8 +210,8 @@ export default defineEventHandler((event) => {
         },
         {
           cardId: 3,
-          cardName: "Pink Noise",
-          imageUrl: "/images/Noise/Pink Noise.jpg",
+          cardName: "Orange Noise",
+          imageUrl: "/images/Noise/Orange Noise.jpg",
           sound: "",
           bg: "",
         },

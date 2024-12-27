@@ -11,14 +11,12 @@
                         <h3>Nature<span>Vibes</span></h3>
                     </div>
                 </NuxtLink>
-                <!--Nav links-->
-                <div class="nav__links">
-                    <NuxtLink to="/">Home</NuxtLink>
-                    <NuxtLink to="/">Features</NuxtLink>
-                    <NuxtLink to="/">Subscription</NuxtLink>
-                    <NuxtLink to="/">Pricing</NuxtLink>
-                </div>
+
                 <div class="nav__right">
+                    <!--Upgrade-->
+                    <NuxtLink to="/upgrade" class="upgradeBtn" v-if="!myStore.auth">
+                        <IconsCrown /> <span>Upgrade</span>
+                    </NuxtLink>
                     <!--Language-->
                     <div class="lang__container">
                         <iconsLanguage @click="showLangMenu()" />
@@ -70,6 +68,7 @@ header {
     background: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: 0.5s ease-in-out;
+
     nav {
         height: 80px;
         display: flex;
@@ -109,26 +108,26 @@ header {
             }
         }
 
-        .nav__links {
-            display: flex;
-            gap: 10px;
 
-            a {
-                font-weight: 500;
-                font-size: 18px;
-                padding: 5px 10px;
-                transition: 0.3s ease;
-
-                &:hover {
-                    color: $primary;
-                }
-            }
-        }
 
         .nav__right {
             display: flex;
             align-items: center;
             gap: 10px;
+
+            .upgradeBtn {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-weight: 500;
+                font-size: 18px;
+
+                svg {
+                    width: 30px;
+                }
+
+
+            }
 
             .lang__container {
                 display: flex;
@@ -188,7 +187,7 @@ header {
                     position: absolute;
                     left: 7px;
                     background: $bg-gradient;
-                    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2) inset;
+                    box-shadow: 0px 0px 10px 3px rgba(108, 57, 189, 0.5) inset;
                     width: 22px;
                     height: 22px;
                     border-radius: 50%;
@@ -236,6 +235,10 @@ header {
 .dark {
     background: transparent !important;
 
+    .upgradeBtn {
+        color: $primary;
+    }
+
     .logo__container {
         h3 {
             color: $white;
@@ -248,12 +251,6 @@ header {
         }
     }
 
-    .nav__links {
-        a {
-            color: $text-dark;
-        }
-    }
-
     .theme__container {
         box-shadow: 0px 0px 10px 3px rgba(173, 170, 170, 0.5) inset !important;
 
@@ -262,5 +259,95 @@ header {
             right: 7px !important;
         }
     }
+}
+
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+    header {
+        nav {
+            height: 60px;
+
+            .logo__container {
+                width: auto;
+                height: 60px;
+                align-items: center;
+                gap: 5px;
+
+                .logo {
+                    min-width: 40px;
+                    height: 40px;
+                }
+
+                h3 {
+                    font-size: 14px;
+                }
+            }
+
+            .nav__right {
+                gap: 5px;
+
+                .upgradeBtn {
+                    svg {
+                        width: 25px;
+                    }
+
+                    span {
+                        display: none;
+                    }
+                }
+
+                .lang__container {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    svg {
+                        width: 25px;
+                    }
+
+                    .lang__menu {
+                        width: 40px;
+                        left: -8px;
+
+                        .lang__item {
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                .theme__container {
+                    padding: 4px;
+                    height: 25px;
+                    width: 45px;
+                    &::before {
+                        left: 4px;
+                        width: 18px;
+                        height: 18px;
+                    }
+
+                    svg {
+                        width: 16px;
+                    }
+                }
+
+                .loginBtn {
+                    width: 55px;
+                    height: 25px;
+                    font-size: 14px;
+                }
+
+            }
+        }
+    }
+
+    .dark {
+        .theme__container {
+            &::before {
+                right: 4px !important;
+            }
+        }
+    }
+
 }
 </style>

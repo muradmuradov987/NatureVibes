@@ -1,8 +1,7 @@
 <template>
     <div class="card">
-        <NuxtLink :to="`/card/${card.cardId}`">
-            <NuxtImg format="webp" :src="card.imageUrl" :alt="card.cardName" />
-            <!-- <img :src="card.imageUrl" :alt="card.cardName"> -->
+        <NuxtLink :to="link">
+            <NuxtImg format="webp" loading="lazy" :src="card.imageUrl" :alt="card.cardName" />
             <div class="card__info">
                 {{ card.cardName }}
             </div>
@@ -13,6 +12,7 @@
 <script setup>
 defineProps({
     card: Object,
+    link: String,
 });
 </script>
 
@@ -21,8 +21,8 @@ defineProps({
     width: calc(25% - 19px);
     max-height: 300px;
     height: 300px;
-    border-top-left-radius: 22px;
-    border-bottom-right-radius: 22px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     overflow: hidden;
     position: relative;
     transition: 0.3s ease;

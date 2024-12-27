@@ -1,10 +1,11 @@
 <template>
-    <div class="main" :class="{ dark: myStore.isDarkMode }" v-if="!myStore.isLoading"> 
+    <div class="main" :class="{ dark: myStore.isDarkMode }" v-if="!myStore.isLoading">
         <section v-for="item in myStore.appData" :key="item.id">
             <div class="container">
                 <h1 class="title">{{ item.title }}</h1>
                 <div class="section__wrapper">
-                    <uiCard v-for="card in item.card" :key="card.cardId" :card="card" />
+                    <uiCard v-for="card in item.card" :key="card.cardId" :card="card"
+                        :link="`/${item.title}/${item.id}/${card.cardId}`" />
                 </div>
             </div>
         </section>
@@ -16,9 +17,7 @@ import { useStore } from '~/store/store';
 const myStore = useStore();
 
 onMounted(async () => {
-    if (!myStore.appData.length) {
-        await myStore.getSoundsData();
-    }
+    await myStore.getSoundsData();
 });
 </script>
 
