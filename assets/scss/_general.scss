@@ -27,6 +27,10 @@ body {
   color: $text;
 }
 
+.page__wrapper{
+  min-height: calc(100vh - 310px);
+}
+
 .container {
   max-width: 1000px;
   width: 100%;

@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer :class="{ dark: myStore.isDarkMode }">
         <div class="container">
             <div class="footer__content">
                 <div class="footer__logo">
@@ -18,8 +18,8 @@
                         <IconsPhone />
                         Contact Us
                     </NuxtLink>
-                    <NuxtLink to="/privacy">
-                        <IconsPolicy/>
+                    <NuxtLink to="/privacy-policy">
+                        <IconsPolicy />
                         Privacy Policy
                     </NuxtLink>
                 </div>
@@ -41,11 +41,19 @@
     </footer>
 </template>
 
+<script setup>
+import { useStore } from '~/store/store';
+const myStore = useStore();
+
+</script>
+
 <style scoped lang="scss">
 footer {
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
     transition: 0.5s ease-in-out;
-    padding: 20px 0;
+    padding-top: 20px;
+    height: 230px;
+    background: $white;
 
     .footer__content {
         display: flex;
@@ -94,7 +102,6 @@ footer {
                 svg {
                     width: 25px;
                     transition: 0.3s ease;
-
                 }
 
                 &:hover {
@@ -150,6 +157,107 @@ footer {
 
         span {
             color: $primary;
+        }
+    }
+}
+
+
+.dark {
+    background: transparent !important;
+
+    .footer__content {
+        .footer__logo {
+            width: 280px;
+
+            h3 {
+                color: $white;
+            }
+
+            h4 {
+                color: $white;
+            }
+
+            p {
+                color: $white;
+            }
+
+
+        }
+
+        .footer__links {
+
+            h3 {
+                color: $white;
+            }
+
+            a {
+                color: $white;
+
+                svg {
+                    fill: $white;
+                }
+            }
+        }
+
+        .footer__social {
+            h3 {
+                color: $white;
+            }
+
+            a {
+                color: $white;
+
+                svg {
+                    fill: $white ;
+                }
+            }
+        }
+
+    }
+
+    .footer__legal {
+        color: $white;
+
+        span {
+            color: $primary;
+        }
+    }
+}
+
+
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+    footer {
+        padding-bottom: 20px;
+        height:unset;
+        .footer__content {
+            flex-direction: column;
+            gap: 30px;
+            .footer__logo {
+                width: unset;
+            }
+
+            .footer__links {
+                width:unset;
+                h3 {
+                    margin-bottom: 0px;
+                }
+                gap: 5px;
+            }
+
+            .footer__social {
+                gap: 5px;
+                width: unset;
+                h3 {
+                    margin-bottom: 0px;
+                }
+            }
+
+        }
+
+        .footer__legal {
+            margin-top: 20px;
         }
     }
 }

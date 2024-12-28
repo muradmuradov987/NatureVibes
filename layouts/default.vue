@@ -2,7 +2,7 @@
     <div class="defaultLayout" :class="{ dark: myStore.isDarkMode }">
         <uiLoading />
         <layoutsHeader />
-        <slot />
+        <slot class="test"/>
         <layoutsFooter/>
     </div>
 </template>
@@ -18,6 +18,7 @@ const myStore = useStore();
 <style scoped lang="scss">
 .defaultLayout {
     background: $bg-gradient;
+    min-height: 100vh;
 }
 
 .dark {
