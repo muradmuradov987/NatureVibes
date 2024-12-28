@@ -1,19 +1,40 @@
 <template>
     <div class="card">
-        <NuxtLink :to="link">
+        <NuxtLink v-if="!card.isLocked" :to="link">
             <NuxtImg format="webp" loading="lazy" :src="card.imageUrl" :alt="card.cardName" />
             <div class="card__info">
                 {{ card.cardName }}
             </div>
+            <iconsUnLock class="lock" v-if="card.premiumCard" />
         </NuxtLink>
+
+        <div v-else @click="handleLockedCard">
+            <NuxtImg format="webp" loading="lazy" :src="card.imageUrl" :alt="card.cardName" />
+            <div class="card__info">
+                {{ card.cardName }}
+            </div>
+            <iconsLock class="lock" />
+        </div>
     </div>
+
 </template>
 
 <script setup>
+import { useStore } from '~/store/store';
+const myStore = useStore();
+
 defineProps({
     card: Object,
     link: String,
 });
+
+
+
+const handleLockedCard = () => {
+    console.log(myStore.modal.show);
+    myStore.showModal()
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -26,6 +47,7 @@ defineProps({
     overflow: hidden;
     position: relative;
     transition: 0.3s ease;
+    cursor: pointer;
 
     img {
         width: 100%;
@@ -57,6 +79,15 @@ defineProps({
             transform: scale(1.1);
         }
     }
+
+    .lock {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 25px;
+    }
+
+
 }
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="privacy-policy page__wrapper">
+    <div class="privacy-policy page__wrapper " :class="{ dark: myStore.isDarkMode }">
         <div class="container">
             <h1>Privacy Policy</h1>
             <p>Last updated: January 1, 2025</p>
@@ -65,7 +65,7 @@
                 </p>
             </div>
 
-            <div class="section"> 
+            <div class="section">
                 <h2>Contact Us</h2>
                 <p>If you have any questions about this Privacy Policy, please contact us:</p>
                 <ul>
@@ -76,13 +76,22 @@
     </div>
 </template>
 
+
+<script setup>
+
+import { useStore } from '~/store/store';
+const myStore = useStore();
+
+</script>
+
 <style scoped lang="scss">
 .privacy-policy {
     padding: 20px 0;
 
-    .section{
+    .section {
         margin-bottom: 30px;
     }
+
     h1 {
         font-size: 2rem;
         margin-bottom: 10px;
@@ -99,6 +108,16 @@
 
     p {
         line-height: 1.6;
+    }
+}
+
+.dark {
+
+    h1,
+    h2,
+    p,
+    li {
+        color: $white;
     }
 }
 </style>

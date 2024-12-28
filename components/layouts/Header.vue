@@ -14,7 +14,7 @@
 
                 <div class="nav__right">
                     <!--Upgrade-->
-                    <NuxtLink to="/upgrade" class="upgradeBtn" v-if="!myStore.auth">
+                    <NuxtLink to="/upgrade" class="upgradeBtn" v-if="!myStore.isLoggedIn">
                         <IconsCrown /> <span>Upgrade</span>
                     </NuxtLink>
                     <!--Language-->

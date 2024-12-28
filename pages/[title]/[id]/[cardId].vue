@@ -3,15 +3,17 @@
     <h1>Route ID: {{ route.params.cardId }}</h1>
 
     <p>{{ cardDetail }}</p>
-    <div class="container">
-        <div v-if="cardDetail">
-            <h1>{{ cardDetail.cardName }}</h1>
-            <div class="card__cover">
-                <img :src="cardDetail.imageUrl" alt="Card Image">
+    <div class="page__wrapper">
+        <div class="container">
+            <div v-if="cardDetail">
+                <h1>{{ cardDetail.cardName }}</h1>
+                <div class="card__cover">
+                    <img :src="cardDetail.imageUrl" alt="Card Image">
+                </div>
             </div>
-        </div>
-        <div v-else>
-            <p>Card not found</p>
+            <div v-else>
+                <p>Card not found</p>
+            </div>
         </div>
     </div>
 </template>

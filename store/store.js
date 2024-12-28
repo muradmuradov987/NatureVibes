@@ -8,7 +8,6 @@ export const useStore = defineStore("store", () => {
     isLoading.value = false;
   }, 1500);
 
-
   //Dark Mode
   const isDarkMode = ref(false);
   const toggleDarkMode = () => {
@@ -27,15 +26,44 @@ export const useStore = defineStore("store", () => {
     }
   };
 
-  //Auth
-  const auth = ref(false)
+  //isLoggedIn
+  const isLoggedIn = ref(false);
+
+  //isPremium
+  const isPremium = ref(false);
+  const unlockCards = () => {
+    if (isPremium.value) {
+      appData.value.forEach((category) => {
+        category.card.forEach((card) => {
+          card.isLocked = false;
+        });
+      });
+    }
+  };
+
+  //Modal
+  const modal = ref({
+    show: false,
+  });
+
+  const showModal = () => {
+    modal.show = true;
+  };
+  const hideModal = () => {
+    modal.show.value = false;
+  };
 
   return {
-    auth,
+    isLoading,
     isDarkMode,
     toggleDarkMode,
-    isLoading,
     appData,
     getSoundsData,
+    isLoggedIn,
+    isPremium,
+    unlockCards,
+    modal,
+    showModal,
+    hideModal,
   };
 });

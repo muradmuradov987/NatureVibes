@@ -4,6 +4,7 @@
         <layoutsHeader />
         <slot class="test"/>
         <layoutsFooter/>
+        <uiModalsCardModal v-if="myStore.modal.show"/>
     </div>
 </template>
 
