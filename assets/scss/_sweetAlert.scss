@@ -1,0 +1,137 @@
+.login__modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .modal__logo-container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .logo {
+      min-width: 60px;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: 0.3s ease-in-out;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    h3 {
+      span {
+        color: $primary;
+      }
+    }
+
+    &:hover {
+      .logo {
+        box-shadow: 0px 0px 10px 2px rgb(124, 126, 120);
+      }
+    }
+  }
+  p {
+    text-align: center;
+  }
+}
+
+.upgrade__modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  img {
+    width: 50px;
+    margin: 0 auto;
+  }
+  p {
+    span {
+      color: $primary;
+      font-weight: 500;
+    }
+  }
+  .benefits {
+    text-align: start;
+    h4 {
+      margin-bottom: 10px;
+      color: $primary;
+    }
+    p {
+      padding-left: 30px;
+      position: relative;
+      margin-bottom: 5px;
+      &::after {
+        content: url("/public/images/plus.svg");
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        left: 0;
+        top: -2px;
+      }
+    }
+  }
+  .reminder {
+    font-weight: 500;
+  }
+}
+
+//Modal buttons
+.swal2-actions {
+  display: flex;
+  gap: 10px;
+  button {
+    padding: 10px 20px;
+    border: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  .swal2-confirm {
+    background: $primary;
+    color: $white;
+    &:hover {
+      background: $btn-hover;
+    }
+  }
+  .swal2-cancel {
+    border: 1px solid $primary;
+    background: none;
+  }
+}
+
+.swal-dark-mode {
+  .login__modal {
+    .modal__logo-container {
+      h3 {
+        color: $white;
+      }
+    }
+    h2 {
+      color: $white;
+    }
+
+    p {
+      color: $white;
+    }
+  }
+
+  .upgrade__modal {
+    h2 {
+      color: $white;
+    }
+    p {
+      color: $white;
+    }
+  }
+
+  .swal2-actions {
+    .swal2-cancel {
+      color: $white;
+    }
+  }
+}

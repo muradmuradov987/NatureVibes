@@ -1,7 +1,7 @@
 <template>
   <div  class="loading-overlay" v-if="myStore.isLoading" >
     <div class="logo">
-      <img src="~/assets/images/logo.webp" alt="">
+      <img src="/images/logo.webp" alt="">
     </div>
     <span class="loader"></span>
   </div>

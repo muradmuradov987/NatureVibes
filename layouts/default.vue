@@ -2,9 +2,8 @@
     <div class="defaultLayout" :class="{ dark: myStore.isDarkMode }">
         <uiLoading />
         <layoutsHeader />
-        <slot class="test"/>
-        <layoutsFooter/>
-        <uiModalsCardModal v-if="myStore.modal.show"/>
+        <slot />
+        <layoutsFooter />
     </div>
 </template>
 

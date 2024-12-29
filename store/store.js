@@ -41,18 +41,6 @@ export const useStore = defineStore("store", () => {
     }
   };
 
-  //Modal
-  const modal = ref({
-    show: false,
-  });
-
-  const showModal = () => {
-    modal.show = true;
-  };
-  const hideModal = () => {
-    modal.show.value = false;
-  };
-
   return {
     isLoading,
     isDarkMode,
@@ -62,8 +50,5 @@ export const useStore = defineStore("store", () => {
     isLoggedIn,
     isPremium,
     unlockCards,
-    modal,
-    showModal,
-    hideModal,
   };
 });

@@ -6,7 +6,7 @@
                     <div class="logo__container">
                         <!--Logo-->
                         <div class="logo">
-                            <img src="~/assets/images/logo.webp" alt="logo">
+                            <img src="/images/logo.webp" alt="logo">
                         </div>
                         <h3>Nature<span>Vibes</span></h3>
                     </div>
@@ -14,7 +14,7 @@
 
                 <div class="nav__right">
                     <!--Upgrade-->
-                    <NuxtLink to="/upgrade" class="upgradeBtn" v-if="!myStore.isLoggedIn">
+                    <NuxtLink to="/upgrade" class="upgradeBtn" v-if="myStore.isLoggedIn">
                         <IconsCrown /> <span>Upgrade</span>
                     </NuxtLink>
                     <!--Language-->
@@ -214,7 +214,7 @@ header {
                 justify-content: center;
                 border-top-left-radius: 8px;
                 border-bottom-right-radius: 8px;
-                background: $btn;
+                background: $primary;
                 color: $white;
                 transition: 0.3s ease;
 
