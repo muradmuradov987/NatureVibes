@@ -66,7 +66,7 @@ const handleLockedCard = () => {
         Swal.fire({
             html: `
                 <div class="upgrade__modal">
-                    <img src="/images/crown.svg" alt="crown">                           
+                    <img src="/images/plugins/crown.svg" alt="crown">                           
                     <h2>Unlock Premium Features!</h2>
                     <p>Upgrade to enjoy exclusive sounds and unlimited access.
                      Starting at just <span>$4.99</span>/month, you can take your relaxation journey to the next level.</p>
