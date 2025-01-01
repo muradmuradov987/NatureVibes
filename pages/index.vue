@@ -1,4 +1,5 @@
 <template>
+    <h1>salam</h1>
     <div class="main" :class="{ dark: myStore.isDarkMode }" v-if="!myStore.isLoading">
         <section v-for="item in myStore.appData" :key="item.id">
             <div class="container">
