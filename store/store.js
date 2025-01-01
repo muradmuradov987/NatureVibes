@@ -27,10 +27,10 @@ export const useStore = defineStore("store", () => {
   };
 
   //isLoggedIn
-  const isLoggedIn = ref(false);
+  const isLoggedIn = ref(true);
 
   //isPremium
-  const isPremium = ref(false);
+  const isPremium = ref(true);
   const unlockCards = () => {
     if (isPremium.value) {
       appData.value.forEach((category) => {
@@ -40,6 +40,8 @@ export const useStore = defineStore("store", () => {
       });
     }
   };
+
+
 
   return {
     isLoading,
