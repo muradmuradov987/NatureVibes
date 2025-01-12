@@ -24,7 +24,7 @@ const upgradeToPremium = () => {
 
 onMounted(async () => {
     await myStore.getSoundsData();
-    upgradeToPremium()
+    // upgradeToPremium()
 });
 </script>
 

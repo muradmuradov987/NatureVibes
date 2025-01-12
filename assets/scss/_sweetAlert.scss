@@ -79,6 +79,71 @@
   }
 }
 
+.setTimer__modal {
+  h2 {
+    margin-bottom: 20px;
+  }
+  .modal__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 150px;
+    margin: 0 auto;
+
+    input {
+      display: none;
+      &:checked {
+        + label {
+          &::after {
+            transform: translateY(-50%) scale(0.5);
+          }
+        }
+      }
+    }
+
+    label {
+      cursor: pointer;
+      position: relative;
+      font-size: 18px;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border: 2px solid $primary;
+        border-radius: 50%;
+        top: 50%;
+        left: -25px;
+        transform: translateY(-50%);
+        transition: border-color 400ms ease;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border: 2px solid $primary;
+        background: $primary;
+        border-radius: 50%;
+        top: 50%;
+        left: -25px;
+        transform: translateY(-50%) scale(0);
+        transition: 400ms ease;
+      }
+    }
+    .clear__timer-btn {
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid $primary;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+  }
+}
+
 //Modal buttons
 .swal2-actions {
   display: flex;
@@ -126,6 +191,21 @@
     }
     p {
       color: $white;
+    }
+  }
+
+  .setTimer__modal {
+    h2 {
+      color: $white;
+    }
+    .modal__body {
+      label {
+        color: $white;
+      }
+      .clear__timer-btn {
+        color: $white;
+
+      }
     }
   }
 

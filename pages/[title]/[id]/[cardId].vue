@@ -1,8 +1,4 @@
 <template>
-  <!-- <h1>Route ID: {{ route.params.id }}</h1>
-  <h1>Route ID: {{ route.params.cardId }}</h1>
-
-  <p>{{ cardDetail }}</p> -->
   <div class="page__wrapper" :class="{ dark: myStore.isDarkMode }">
     <div class="container">
       <div v-if="cardDetail" class="card__detail">
@@ -14,8 +10,12 @@
             </div>
           </div>
           <div class="detail__right">
-            <div class="extra__sounds"></div>
+            <div class="extra__sounds-container"></div>
             <div class="sound__control">
+              <!--Add extra sounds-->
+              <UiAddExtraSound />
+
+              <!--Audio Player-->
               <div class="audio-player">
                 <div class="playBtn" @click="toggleAudio">
                   <IconsPause v-if="isPlaying" />
@@ -28,7 +28,8 @@
                   loop
                 ></audio>
               </div>
-              <IconsTimer class="timer" @click="setTimer" />
+              <!--Set Timer-->
+              <uiSetTimer @timer-ended="pauseAudio" />
             </div>
           </div>
         </div>
@@ -41,9 +42,6 @@
 </template>
 
 <script setup>
-import Swal from 'sweetalert2';
-
-
 //Store
 import { useStore } from "~/store/store";
 const myStore = useStore();
@@ -73,9 +71,10 @@ const fetchData = async () => {
   }
 };
 
-// Audio Control
+////////// Audio Control
 const isPlaying = ref(true);
 const audio = ref(null);
+
 const toggleAudio = () => {
   if (audio.value.paused) {
     audio.value.play();
@@ -85,26 +84,10 @@ const toggleAudio = () => {
     isPlaying.value = false;
   }
 };
-
-// Timer Control
-const setTimer = () => {
-  Swal.fire({
-    html:``,
-    buttonsStyling: false,
-    showCancelButton: true,
-    confirmButtonText: "Start",
-    cancelButtonText: "Cancel",
-    preConfirm: () => {
-      console.log(11111);
-      
-    },
-    background: myStore.isDarkMode
-      ? "linear-gradient(180deg, #0f2027, #203a43, #2c5364)"
-      : "#fff",
-    customClass: {
-      popup: myStore.isDarkMode ? "swal-dark-mode" : "swal-light-mode",
-    },
-  });
+////////// Audio Control end
+const pauseAudio = () => {
+  audio.value.pause();
+  isPlaying.value = false;
 };
 
 onMounted(async () => {
@@ -153,11 +136,10 @@ onMounted(async () => {
       flex-direction: column;
       justify-content: space-between;
       gap: 10px;
+      border-radius: 10px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
       padding: 20px;
-      .extra__sounds {
-        height: 20px;
-        background: pink;
+      .extra__sounds-container {
       }
       .sound__control {
         height: 50px;
@@ -187,6 +169,34 @@ onMounted(async () => {
           &:hover {
             transform: scale(1.1);
           }
+        }
+      }
+    }
+  }
+}
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+  .card__detail {
+    .card__title {
+      margin-bottom: 30px;
+    }
+    .detail__container {
+      flex-direction: column;
+      gap: 20px;
+      .detail__left {
+        width: 100%;
+        .card__cover {
+          max-width: unset;
+          width: 100%;
+          max-height: unset;
+          height: 250px;
+        }
+      }
+      .detail__right {
+        width: 100%;
+        height: 200px;
+        .extra__sounds-container {
         }
       }
     }
