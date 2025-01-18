@@ -26,6 +26,18 @@ export const useStore = defineStore("store", () => {
     }
   };
 
+  //Extra Sounds
+  const extraSoundData = ref([]);
+  const getExtraSoundsData = async () => {
+    if (extraSoundData.value.length > 0) return;
+    try {
+      const fetchedData = await $fetch("/api/extraSoundData");
+      extraSoundData.value = fetchedData || [];
+    } catch (error) {
+      console.error("Fetch Error:", error);
+    }
+  };
+
   //isLoggedIn
   const isLoggedIn = ref(false);
 
@@ -42,6 +54,14 @@ export const useStore = defineStore("store", () => {
     }
   };
 
+  const modalTitle = ref("");
+  const showModal = (modal) => {
+    modalTitle.value = modal;
+    
+  };
+  const closeModal = () => {
+    modalTitle.value = "";
+  };
 
   return {
     isLoading,
@@ -49,8 +69,13 @@ export const useStore = defineStore("store", () => {
     toggleDarkMode,
     appData,
     getSoundsData,
+    extraSoundData,
+    getExtraSoundsData,
     isLoggedIn,
     isPremium,
     unlockCards,
+    modalTitle,
+    showModal,
+    closeModal,
   };
 });

@@ -1,4 +1,5 @@
 <template>
+  <ModalsExtraSoundModal v-if="myStore.modalTitle == 'extraSoundModal'" />
   <div class="page__wrapper" :class="{ dark: myStore.isDarkMode }">
     <div class="container">
       <div v-if="cardDetail" class="card__detail">
@@ -11,10 +12,11 @@
           </div>
           <div class="detail__right">
             <div class="extra__sounds-container"></div>
+
             <div class="sound__control">
               <!--Add extra sounds-->
-              <UiAddExtraSound />
-
+              <UiAddExtraSoundBtn />
+              
               <!--Audio Player-->
               <div class="audio-player">
                 <div class="playBtn" @click="toggleAudio">
@@ -29,7 +31,7 @@
                 ></audio>
               </div>
               <!--Set Timer-->
-              <uiSetTimer @timer-ended="pauseAudio" />
+              <uiSetTimerBtn @timer-ended="pauseAudio" />
             </div>
           </div>
         </div>
@@ -66,6 +68,7 @@ const fetchData = async () => {
     if (!cardDetail.value) {
       router.push("/404");
     }
+    await myStore.getExtraSoundsData();
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -92,6 +95,7 @@ const pauseAudio = () => {
 
 onMounted(async () => {
   await fetchData();
+
   //Check audio status
   audio.value
     .play()
