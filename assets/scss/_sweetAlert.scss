@@ -148,21 +148,6 @@
 .swal2-actions {
   display: flex;
   gap: 10px;
-  button {
-    padding: 10px 20px;
-    border: none;
-    font-weight: 500;
-    transition: 0.3s ease;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  .swal2-confirm {
-    background: $primary;
-    color: $white;
-    &:hover {
-      background: $btn-hover;
-    }
-  }
   .swal2-cancel {
     border: 1px solid $primary;
     background: none;

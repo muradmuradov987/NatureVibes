@@ -37,6 +37,9 @@ export const useStore = defineStore("store", () => {
       console.error("Fetch Error:", error);
     }
   };
+  //Temp Extra Sounds
+  const tempExtraSound = ref([]);
+
 
   //isLoggedIn
   const isLoggedIn = ref(false);
@@ -54,6 +57,7 @@ export const useStore = defineStore("store", () => {
     }
   };
 
+  //Modal actions
   const modalTitle = ref("");
   const showModal = (modal) => {
     modalTitle.value = modal;
@@ -71,6 +75,7 @@ export const useStore = defineStore("store", () => {
     getSoundsData,
     extraSoundData,
     getExtraSoundsData,
+    tempExtraSound,
     isLoggedIn,
     isPremium,
     unlockCards,

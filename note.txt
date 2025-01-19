@@ -1,0 +1,9 @@
+extra sound sesleri duzeltmek
+sekilleri duzeltmek
+name artırmaq
+Add buttonuna vuranda name gore filter elemek 
+5den artiq olanda çıxan alerti notification ile evez elemek
+5 dene secili olanda disable dizaynini guncellemek
+remove Sound basanda name gore tempExtraSound dan silmek
+v-for ile donen audiolarin heresinin ozune uyğun ses kontrolu ve ses reqemi
+modalin dark modu ve animasiyasi ve responsivi

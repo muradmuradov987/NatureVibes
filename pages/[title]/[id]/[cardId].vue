@@ -11,12 +11,21 @@
             </div>
           </div>
           <div class="detail__right">
-            <div class="extra__sounds-container"></div>
+            <div class="extra__sounds-container">
+              <div
+                v-for="(item, index) in myStore.tempExtraSound"
+                :key="item.name"
+              >
+                <img :src="item.soundIcon" style="width: 20px" />
+                <audio :src="item.sound" controls autoplay loop></audio>
+                <span @click="removeSound(item.name)">X</span>
+              </div>
+            </div>
 
             <div class="sound__control">
               <!--Add extra sounds-->
               <UiAddExtraSoundBtn />
-              
+
               <!--Audio Player-->
               <div class="audio-player">
                 <div class="playBtn" @click="toggleAudio">
@@ -91,6 +100,11 @@ const toggleAudio = () => {
 const pauseAudio = () => {
   audio.value.pause();
   isPlaying.value = false;
+};
+
+const removeSound = (name) => {
+  console.log(name);
+  // myStore.tempExtraSound = myStore.tempExtraSound.filter(item => item.name !== name)
 };
 
 onMounted(async () => {
