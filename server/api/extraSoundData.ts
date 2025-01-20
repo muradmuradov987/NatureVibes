@@ -31,13 +31,6 @@ export default defineEventHandler((event) => {
         },
         {
           soundId: 5,
-          soundIcon: "/images/Rain/Rain under Umbrella.jpg",
-          sound: "/sounds/Rain/Rain under Umbrella.mp3",
-          isLocked: true,
-          premiumCard: true,
-        },
-        {
-          soundId: 6,
           soundIcon: "/images/Rain/Thunderstorm.jpg",
           sound: "/sounds/Rain/Thunderstorm.mp3",
           isLocked: true,
@@ -64,13 +57,6 @@ export default defineEventHandler((event) => {
         },
         {
           soundId: 3,
-          soundIcon: "/images/Nature/Winter Cottage.jpg",
-          sound: "/sounds/Nature/Winter Cottage.mp3",
-          isLocked: false,
-        },
-
-        {
-          soundId: 4,
           soundIcon: "/images/Nature/Ocean.jpg",
           sound: "/sounds/Nature/Ocean.mp3",
           isLocked: true,
@@ -78,22 +64,28 @@ export default defineEventHandler((event) => {
         },
 
         {
-          soundId: 5,
+          soundId: 4,
           soundIcon: "/images/Nature/Autumn Woods.jpg",
           sound: "/sounds/Nature/Autumn Woods.mp3",
           isLocked: false,
         },
         {
-          soundId: 6,
+          soundId: 5,
           soundIcon: "/images/Nature/Quiet Cave.jpg",
           sound: "/sounds/Nature/Quiet Cave.mp3",
           isLocked: true,
           premiumCard: true,
         },
         {
-          soundId: 7,
+          soundId: 6,
           soundIcon: "/images/Nature/Desert.jpg",
           sound: "/sounds/Nature/Desert.mp3",
+          isLocked: false,
+        },
+        {
+          soundId: 7,
+          soundIcon: "/images/Nature/Lake.jpg",
+          sound: "/sounds/Nature/Lake.mp3",
           isLocked: false,
         },
         {
@@ -175,10 +167,10 @@ export default defineEventHandler((event) => {
         },
       ],
     },
-    //Noise
+    //Music & Instruments
     {
       id: 5,
-      title: "Noise",
+      title: "Music & Instruments",
       extraSound: [
         {
           soundId: 1,
@@ -203,7 +195,7 @@ export default defineEventHandler((event) => {
     },
     //ASMR
     {
-      id: 5,
+      id: 6,
       title: "ASMR",
       extraSound: [
         {
@@ -229,7 +221,7 @@ export default defineEventHandler((event) => {
     },
     //Lullabies
     {
-      id: 5,
+      id: 7,
       title: "Lullabies",
       extraSound: [
         {
@@ -255,5 +247,3 @@ export default defineEventHandler((event) => {
     },
   ];
 });
-
-

@@ -7,3 +7,5 @@ Add buttonuna vuranda name gore filter elemek
 remove Sound basanda name gore tempExtraSound dan silmek
 v-for ile donen audiolarin heresinin ozune uyğun ses kontrolu ve ses reqemi
 modalin dark modu ve animasiyasi ve responsivi
+
+Premiuim sesleri ayir

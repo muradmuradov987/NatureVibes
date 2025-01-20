@@ -83,7 +83,6 @@ const addSounds = () => {
 
 <style lang="scss" scoped>
 .disabled {
-  background: red;
   border-radius: unset !important;
 }
 .modal__overlay {
