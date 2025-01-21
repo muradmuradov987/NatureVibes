@@ -9,3 +9,13 @@ v-for ile donen audiolarin heresinin ozune uyğun ses kontrolu ve ses reqemi
 modalin dark modu ve animasiyasi ve responsivi
 
 Premiuim sesleri ayir
+
+Uprade sehifesi
+Login sehifesi
+Dil elave etmek
+Contact sehifesi
+Animasiyalar
+Zamanlayici modal
+Elave sesler uxun modal
+Sesleri import etmek
+Seslerin dogru axinini yoxlamaq
