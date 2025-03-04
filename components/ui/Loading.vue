@@ -20,7 +20,6 @@ const myStore = useStore();
   left: 0;
   width: 100%;
   height: 100%;
-  // background: rgba(18, 94, 2, 0.8);
   background: linear-gradient(135deg, #333333, #8230bd, #0b6481);
   display: flex;
   align-items: center;

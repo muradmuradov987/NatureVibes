@@ -1,4 +1,6 @@
 <template>
+    <ModalsLoginModal v-if="myStore.modalTitle == 'loginModal'" />
+    <ModalsUpgradeModal v-if="myStore.modalTitle == 'upgradeModal'" />
     <div class="main" :class="{ dark: myStore.isDarkMode }" v-if="!myStore.isLoading">
         <section v-for="item in myStore.appData" :key="item.id">
             <div class="container">

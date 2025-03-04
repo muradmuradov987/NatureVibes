@@ -1,5 +1,6 @@
 <template>
   <ModalsExtraSoundModal v-if="myStore.modalTitle == 'extraSoundModal'" />
+  <ModalsSetTimerModal v-if="myStore.modalTitle == 'setTimerModal'" />
   <div class="page__wrapper" :class="{ dark: myStore.isDarkMode }">
     <div class="container">
       <div v-if="cardDetail" class="card__detail">
@@ -12,10 +13,7 @@
           </div>
           <div class="detail__right">
             <div class="extra__sounds-container">
-              <div
-                v-for="(item, index) in myStore.tempExtraSound"
-                :key="item.name"
-              >
+              <div v-for="(item, index) in myStore.tempExtraSound" :key="item.name">
                 <img :src="item.soundIcon" style="width: 20px" />
                 <audio :src="item.sound" controls autoplay loop></audio>
                 <span @click="removeSound(item.name)">X</span>
@@ -32,12 +30,7 @@
                   <IconsPause v-if="isPlaying" />
                   <IconsPlay v-else />
                 </div>
-                <audio
-                  ref="audio"
-                  :src="cardDetail.sound"
-                  autoplay
-                  loop
-                ></audio>
+                <audio ref="audio" :src="cardDetail.sound" autoplay loop></audio>
               </div>
               <!--Set Timer-->
               <uiSetTimerBtn @timer-ended="pauseAudio" />
@@ -129,11 +122,14 @@ onMounted(async () => {
     text-align: center;
     margin-bottom: 40px;
   }
+
   .detail__container {
     display: flex;
     gap: 30px;
+
     .detail__left {
       width: 50%;
+
       .card__cover {
         max-width: 300px;
         width: 300px;
@@ -141,6 +137,7 @@ onMounted(async () => {
         height: 400px;
         border-radius: 10px;
         overflow: hidden;
+
         img {
           width: 100%;
           height: 100%;
@@ -148,6 +145,7 @@ onMounted(async () => {
         }
       }
     }
+
     .detail__right {
       width: 50%;
       display: flex;
@@ -157,14 +155,16 @@ onMounted(async () => {
       border-radius: 10px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
       padding: 20px;
-      .extra__sounds-container {
-      }
+
+      .extra__sounds-container {}
+
       .sound__control {
         height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 20px;
+
         .playBtn {
           background-color: $primary;
           border-radius: 50%;
@@ -177,13 +177,16 @@ onMounted(async () => {
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
           cursor: pointer;
           transition: transform 0.2s ease;
+
           &:hover {
             transform: scale(1.1);
           }
         }
+
         .timer {
           cursor: pointer;
           transition: transform 0.2s ease;
+
           &:hover {
             transform: scale(1.1);
           }
@@ -199,11 +202,14 @@ onMounted(async () => {
     .card__title {
       margin-bottom: 30px;
     }
+
     .detail__container {
       flex-direction: column;
       gap: 20px;
+
       .detail__left {
         width: 100%;
+
         .card__cover {
           max-width: unset;
           width: 100%;
@@ -211,11 +217,12 @@ onMounted(async () => {
           height: 250px;
         }
       }
+
       .detail__right {
         width: 100%;
         height: 200px;
-        .extra__sounds-container {
-        }
+
+        .extra__sounds-container {}
       }
     }
   }

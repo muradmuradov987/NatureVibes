@@ -20,12 +20,9 @@
 </template>
 
 <script setup>
-import Swal from 'sweetalert2';
 
 import { useStore } from '~/store/store';
 const myStore = useStore();
-
-const router = useRouter();
 
 defineProps({
     card: Object,
@@ -36,63 +33,12 @@ defineProps({
 
 const handleLockedCard = () => {
     if (!myStore.isLoggedIn) {
-        Swal.fire({
-            html: `
-                <div class="login__modal">
-                    <div class="modal__logo-container">
-                        <div class="logo">
-                            <img src="/images/logo.webp" alt="logo">
-                        </div>
-                        <h3>Nature<span>Vibes</span></h3>
-                    </div>
-
-                    <h2>Login or Sign up</h2>
-                    <p>You need to log in to access premium sounds and features.</p>
-                </div>
-            `,
-            buttonsStyling: false,
-            showCancelButton: true,
-            confirmButtonText: 'Go to Login',
-            cancelButtonText: 'Cancel',
-            preConfirm: () => {
-                router.push('/login');
-            },
-            background: myStore.isDarkMode ? 'linear-gradient(180deg, #0f2027, #203a43, #2c5364)' : '#fff',
-            customClass: {
-                popup: myStore.isDarkMode ? 'swal-dark-mode' : 'swal-light-mode',
-            },
-        });
+        myStore.showModal('loginModal')
     } else if (myStore.isLoggedIn) {
-        Swal.fire({
-            html: `
-                <div class="upgrade__modal">
-                    <img src="/images/plugins/crown.svg" alt="crown">                           
-                    <h2>Unlock Premium Features!</h2>
-                    <p>Upgrade to enjoy exclusive sounds and unlimited access.
-                     Starting at just <span>$4.99</span>/month, you can take your relaxation journey to the next level.</p>
-                     <div class="benefits">
-                        <h4>Benefits include:</h4>
-                        <p>Over 20 Exclusive Sounds</p>
-                        <p>Unlimited Access</p>
-                        <p>Early Access to Updates</p>
-                     </div>
-                     <p class="reminder">Don't miss out on the ultimate relaxation experience!</p>
-                </div>
-            `,
-            buttonsStyling: false,
-            showCancelButton: true,
-            confirmButtonText: 'Upgrade now',
-            cancelButtonText: 'Cancel',
-            preConfirm: () => {
-                router.push('/upgrade');
-            },
-            background: myStore.isDarkMode ? 'linear-gradient(180deg, #0f2027, #203a43, #2c5364)' : '#fff',
-            customClass: {
-                popup: myStore.isDarkMode ? 'swal-dark-mode' : 'swal-light-mode',
-            },
-        });
+        myStore.showModal('upgradeModal')
     }
 };
+
 
 </script>
 
