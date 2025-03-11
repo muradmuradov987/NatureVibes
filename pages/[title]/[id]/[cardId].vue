@@ -12,28 +12,40 @@
             </div>
           </div>
           <div class="detail__right">
+            <!--Extra Sounds-->
             <div class="extra__sounds-container">
-              <div v-for="(item, index) in myStore.tempExtraSound" :key="item.name">
+              <div v-for="(item, index) in myStore.tempExtraSound" :key="item.soundId">
                 <img :src="item.soundIcon" style="width: 20px" />
-                <audio :src="item.sound" controls autoplay loop></audio>
-                <span @click="removeSound(item.name)">X</span>
+                <audio :id=item.soundId :src="item.sound" controls autoplay loop></audio>
+                <span @click="removeSound(item.soundId)">X</span>
               </div>
             </div>
 
+            <!--Countdown-->
+            <div v-if="myStore.countdown !== null" class="setTimer__container">
+              <h3>
+                {{ formatTime(myStore.countdown) }}
+              </h3>
+              <button class="clear__timer-btn" @click="myStore.clearTimer()">
+                Clear Timer
+              </button>
+            </div>
+
+            <!--Sound Control-->
             <div class="sound__control">
               <!--Add extra sounds-->
               <UiAddExtraSoundBtn />
 
               <!--Audio Player-->
               <div class="audio-player">
-                <div class="playBtn" @click="toggleAudio">
-                  <IconsPause v-if="isPlaying" />
+                <div class="playBtn" @click="myStore.toggleAudio">
+                  <IconsPause v-if="myStore.isPlaying" />
                   <IconsPlay v-else />
                 </div>
-                <audio ref="audio" :src="cardDetail.sound" autoplay loop></audio>
+                <audio ref="audioElement" :src="cardDetail.sound" autoplay loop></audio>
               </div>
               <!--Set Timer-->
-              <uiSetTimerBtn @timer-ended="pauseAudio" />
+              <uiSetTimerBtn />
             </div>
           </div>
         </div>
@@ -56,6 +68,8 @@ const route = useRoute();
 const router = useRouter();
 
 const cardDetail = ref(null);
+const audioElement = ref(null);
+
 
 const fetchData = async () => {
   try {
@@ -76,43 +90,24 @@ const fetchData = async () => {
   }
 };
 
-////////// Audio Control
-const isPlaying = ref(true);
-const audio = ref(null);
 
-const toggleAudio = () => {
-  if (audio.value.paused) {
-    audio.value.play();
-    isPlaying.value = true;
-  } else {
-    audio.value.pause();
-    isPlaying.value = false;
-  }
-};
-////////// Audio Control end
-const pauseAudio = () => {
-  audio.value.pause();
-  isPlaying.value = false;
+const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
 };
 
-const removeSound = (name) => {
-  console.log(name);
-  // myStore.tempExtraSound = myStore.tempExtraSound.filter(item => item.name !== name)
+
+const removeSound = (id) => {
+  myStore.tempExtraSound = myStore.tempExtraSound.filter(item => item.soundId !== id)
 };
 
 onMounted(async () => {
   await fetchData();
 
   //Check audio status
-  audio.value
-    .play()
-    .then(() => {
-      isPlaying.value = true;
-    })
-    .catch((err) => {
-      console.log("Autoplay failed:", err);
-      isPlaying.value = false;
-    });
+  myStore.setAudioRef(audioElement.value);
+  myStore.playAudio();
 });
 </script>
 
@@ -156,7 +151,29 @@ onMounted(async () => {
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
       padding: 20px;
 
+
       .extra__sounds-container {}
+
+
+      .setTimer__container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        h3 {
+          color: $primary;
+        }
+
+        .clear__timer-btn {
+          border: 1px solid $primary;
+          padding: 5px 10px;
+          font-weight: 500;
+          background: none;
+          border-radius: 8px;
+          color: $primary;
+          cursor: pointer;
+        }
+      }
 
       .sound__control {
         height: 50px;

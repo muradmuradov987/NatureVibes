@@ -40,6 +40,90 @@ export const useStore = defineStore("store", () => {
   //Temp Extra Sounds
   const tempExtraSound = ref([]);
 
+  /////////////////////Audio Control/////////////////
+  const countdown = ref(null);
+  let timerInterval = null;
+  const isPlaying = ref(false);
+  const duration = ref(null);
+  const audio = ref(null);
+
+  const setAudioRef = (audioElement) => {
+    audio.value = audioElement;
+  };
+
+  const playAudio = () => {
+    if (audio.value) {
+      audio.value
+        .play()
+        .then(() => {
+          isPlaying.value = true;
+        })
+        .catch((err) => {
+          console.log("Autoplay failed:", err);
+          isPlaying.value = false;
+        });
+    }
+  };
+
+  const pauseAudio = () => {
+    if (audio.value) {
+      audio.value.pause();
+      tempExtraSound.value.forEach((item) => {
+        const extraAudio = document.getElementById(item.soundId);
+        if (extraAudio) {
+          extraAudio.pause();
+        }
+      });
+      isPlaying.value = false;
+    }
+  };
+
+  //Play pause sound
+  const toggleAudio = () => {
+    if (isPlaying.value) {
+      audio.value?.pause();
+      tempExtraSound.value.forEach((item) => {
+        const extraAudio = document.getElementById(item.soundId);
+        if (extraAudio) {
+          extraAudio.pause();
+        }
+      });
+    } else {
+      audio.value?.play();
+      tempExtraSound.value.forEach((item) => {
+        const extraAudio = document.getElementById(item.soundId);
+        if (extraAudio) {
+          extraAudio.play();
+        }
+      });
+    }
+    isPlaying.value = !isPlaying.value;
+  };
+
+  const setTimer = () => {
+    clearTimer();
+    countdown.value = duration.value;
+    duration.value = null;
+    timerInterval = setInterval(() => {
+      if (countdown.value > 0) {
+        countdown.value--;
+      } else {
+        clearTimer();
+        pauseAudio();
+      }
+    }, 1000);
+    closeModal();
+  };
+
+  const clearTimer = () => {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+    countdown.value = null;
+  };
+
+  /////////////////////////////////////////////
 
   //isLoggedIn
   const isLoggedIn = ref(false);
@@ -61,26 +145,36 @@ export const useStore = defineStore("store", () => {
   const modalTitle = ref("");
   const showModal = (modal) => {
     modalTitle.value = modal;
-    
   };
   const closeModal = () => {
     modalTitle.value = "";
   };
 
   return {
-    isLoading,
-    isDarkMode,
+    isLoading, //Loading
+    isDarkMode, //Dark mode
     toggleDarkMode,
-    appData,
-    getSoundsData,
-    extraSoundData,
-    getExtraSoundsData,
+    appData, //All sounds data
+    getSoundsData, // All data (Func)
+    extraSoundData, //Extra sounds data
+    getExtraSoundsData, // Extra sound data (Func)
     tempExtraSound,
-    isLoggedIn,
-    isPremium,
+    isLoggedIn, //login
+    isPremium, //premium
     unlockCards,
-    modalTitle,
-    showModal,
-    closeModal,
+    modalTitle, //modal title
+    showModal, //show modal
+    closeModal, //close modal
+
+    //Audio Control
+    setAudioRef, // audio ref
+    playAudio, // play sound
+    pauseAudio, // puase sound
+    toggleAudio, // play puase sound
+    duration, // selected duration
+    countdown, // selected time
+    isPlaying, // sound play status
+    setTimer, // set timer (func)
+    clearTimer, //clear time (func)
   };
 });

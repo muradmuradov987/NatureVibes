@@ -4,43 +4,40 @@
       <h2> Set The Timer Duration</h2>
       <div class="modal__body">
         <div>
-          <input type="radio" id="time5" name="timer" value="300" v-model="duration" />
+          <input type="radio" id="time5" name="timer" value="5" v-model="myStore.duration" />
           <label for="time5">5 Minutes</label>
         </div>
         <div>
-          <input type="radio" id="time10" name="timer" value="600" v-model="duration" />
+          <input type="radio" id="time10" name="timer" value="600" v-model="myStore.duration" />
           <label for="time10">10 Minutes</label>
         </div>
         <div>
-          <input type="radio" id="time15" name="timer" value="900" v-model="duration" />
+          <input type="radio" id="time15" name="timer" value="900" v-model="myStore.duration" />
           <label for="time15">15 Minutes</label>
         </div>
         <div>
-          <input type="radio" id="time30" name="timer" value="1800" v-model="duration" />
+          <input type="radio" id="time30" name="timer" value="1800" v-model="myStore.duration" />
           <label for="time30">30 Minutes</label>
         </div>
         <div>
-          <input type="radio" id="time45" name="timer" value="2700" v-model="duration" />
+          <input type="radio" id="time45" name="timer" value="2700" v-model="myStore.duration" />
           <label for="time45">45 Minutes</label>
         </div>
         <div>
-          <input type="radio" id="time60" name="timer" value="3600" v-model="duration" />
+          <input type="radio" id="time60" name="timer" value="3600" v-model="myStore.duration" />
           <label for="time60">1 Hour</label>
         </div>
         <div>
-          <input type="radio" id="time120" name="timer" value="7200" v-model="duration" />
+          <input type="radio" id="time120" name="timer" value="7200" v-model="myStore.duration" />
           <label for="time120">2 Hour</label>
         </div>
         <div>
-          <input type="radio" id="time180" name="timer" value="10800" v-model="duration" />
+          <input type="radio" id="time180" name="timer" value="10800" v-model="myStore.duration" />
           <label for="time180">3 Hour</label>
-        </div>
-        <div class="clear__timer-btn">
-          Clear Timer
         </div>
       </div>
       <div class="modal__footer">
-        <button class="primary__btn" @click="startCountdown()">Start</button>
+        <button class="primary__btn" @click="myStore.setTimer()">Start</button>
         <button class="secondary__btn" @click="myStore.closeModal()">
           Cancel
         </button>
@@ -53,45 +50,6 @@
 //Store
 import { useStore } from "~/store/store";
 const myStore = useStore();
-
-const duration = ref(null)
-const timer = ref(null);
-
-
-// const clearTimer = () => {
-//   this.duration.value = null;
-//   clearInterval(this.timer.value);
-//   this.timer.value = null;
-// }
-
-
-const startCountdown = () => {
-  if (!duration.value) return;
-
- 
-
-  // timer.value = setInterval(() => {
-  //   if (duration.value <= 0) {
-  //     // clearInterval(timer.value);
-  //     // timer.value = null;
-  //     alert('Time is up!');
-  //     return;
-  //   }
-  //   remainingTime--;
-  //   console.log(`Time remaining: ${duration.value} seconds`);
-  // }, 1000);
-};
-
-// const formatTime = (seconds) => {
-//   const minutes = Math.floor(seconds / 60);
-//   const secs = seconds % 60;
-//   return `${minutes}:${secs.toString().padStart(2, "0")}`;
-// };
-
-// const clearTimer = () => {
-//   countdown.value = null;
-// };
-
 </script>
 
 <style lang="scss" scoped>
@@ -202,7 +160,9 @@ const startCountdown = () => {
     h2 {
       color: $white;
     }
-
+    label{
+      color: $white;
+    }
     p {
       color: $white;
     }

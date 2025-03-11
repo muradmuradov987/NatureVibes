@@ -6,31 +6,31 @@ export default defineEventHandler((event) => {
       title: "Rain & Thunders",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Rain/Refreshing Rain.jpg",
           sound: "/sounds/Rain/Refreshing Rain.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Rain/Rain in Window.jpg",
           sound: "/sounds/Rain/Rain in Window.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Rain/Rain in Forest.jpg",
           sound: "/sounds/Rain/Rain in Forest.mp3",
           isLocked: false,
         },
         {
-          soundId: 4,
+          soundId: Math.random(),
           soundIcon: "/images/Rain/Rain on Leaves.jpg",
           sound: "/sounds/Rain/Rain on Leaves.mp3",
           isLocked: false,
         },
         {
-          soundId: 5,
+          soundId: Math.random(),
           soundIcon: "/images/Rain/Thunderstorm.jpg",
           sound: "/sounds/Rain/Thunderstorm.mp3",
           isLocked: true,
@@ -44,19 +44,19 @@ export default defineEventHandler((event) => {
       title: "Nature",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Peaceful Night.jpg",
           sound: "/sounds/Nature/Peaceful Night.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Vivid Creek.jpg",
           sound: "/sounds/Nature/Vivid Creek.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Ocean.jpg",
           sound: "/sounds/Nature/Ocean.mp3",
           isLocked: true,
@@ -64,32 +64,32 @@ export default defineEventHandler((event) => {
         },
 
         {
-          soundId: 4,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Autumn Woods.jpg",
           sound: "/sounds/Nature/Autumn Woods.mp3",
           isLocked: false,
         },
         {
-          soundId: 5,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Quiet Cave.jpg",
           sound: "/sounds/Nature/Quiet Cave.mp3",
           isLocked: true,
           premiumCard: true,
         },
         {
-          soundId: 6,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Desert.jpg",
           sound: "/sounds/Nature/Desert.mp3",
           isLocked: false,
         },
         {
-          soundId: 7,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Lake.jpg",
           sound: "/sounds/Nature/Lake.mp3",
           isLocked: false,
         },
         {
-          soundId: 8,
+          soundId: Math.random(),
           soundIcon: "/images/Nature/Lake.jpg",
           sound: "/sounds/Nature/Lake.mp3",
           isLocked: false,
@@ -102,38 +102,38 @@ export default defineEventHandler((event) => {
       title: "Animals",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Relax/Relax.jpg",
           sound: "/sounds/Relax/Relax.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Relax/Reflection.jpg",
           sound: "/sounds/Relax/Reflection.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Relax/Calm.jpg",
           sound: "/sounds/Relax/Calm.mp3",
           isLocked: false,
         },
         {
-          soundId: 4,
+          soundId: Math.random(),
           soundIcon: "/images/Relax/Hope.jpg",
           sound: "/sounds/Relax/Hope.mp3",
           isLocked: true,
           premiumCard: true,
         },
         {
-          soundId: 5,
+          soundId: Math.random(),
           soundIcon: "/images/Relax/Serenity.jpg",
           sound: "/sounds/Relax/Serenity.mp3",
           isLocked: false,
         },
         {
-          soundId: 6,
+          soundId: Math.random(),
           soundIcon: "/images/Relax/Inspiration.jpg",
           sound: "/sounds/Relax/Inspiration.mp3",
           isLocked: true,
@@ -147,19 +147,19 @@ export default defineEventHandler((event) => {
       title: "Transport",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Transport/Vintage Train.jpg",
           sound: "/sounds/Transport/Vintage Train.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Transport/Above the Sky.jpg",
           sound: "/sounds/Transport/Above the Sky.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Transport/Soothing Ride.jpg",
           sound: "/sounds/Transport/Soothing Ride.mp3",
           isLocked: true,
@@ -173,19 +173,19 @@ export default defineEventHandler((event) => {
       title: "Music & Instruments",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/White Noise.jpg",
           sound: "/sounds/Noise/White Noise.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/Brown Noise.jpg",
           sound: "/sounds/Noise/Brown Noise.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/Pink Noise.jpg",
           sound: "/sounds/Noise/Pink Noise.mp3",
           isLocked: true,
@@ -199,19 +199,19 @@ export default defineEventHandler((event) => {
       title: "ASMR",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/White Noise.jpg",
           sound: "/sounds/Noise/White Noise.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/Brown Noise.jpg",
           sound: "/sounds/Noise/Brown Noise.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/Pink Noise.jpg",
           sound: "/sounds/Noise/Pink Noise.mp3",
           isLocked: true,
@@ -225,19 +225,19 @@ export default defineEventHandler((event) => {
       title: "Lullabies",
       extraSound: [
         {
-          soundId: 1,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/White Noise.jpg",
           sound: "/sounds/Noise/White Noise.mp3",
           isLocked: false,
         },
         {
-          soundId: 2,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/Brown Noise.jpg",
           sound: "/sounds/Noise/Brown Noise.mp3",
           isLocked: false,
         },
         {
-          soundId: 3,
+          soundId: Math.random(),
           soundIcon: "/images/Noise/Pink Noise.jpg",
           sound: "/sounds/Noise/Pink Noise.mp3",
           isLocked: true,
