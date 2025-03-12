@@ -3,7 +3,7 @@
     <div class="modal" @click.stop>
       <div>
         <h2 class="modal__title">Add extra sound</h2>
-        <span class="info__msg" v-if="max__select">You can choose a maximum of 5 sounds!</span>
+        <span class="info__msg" v-if="max__select">You can select and add a maximum of 5 votes!</span>
         <span class="info__msg" v-if="mustSelect">Please select at least one sound!</span>
         <span class="info__msg" v-if="sameSelect">The added element cannot be added again.</span>
       </div>
@@ -46,41 +46,54 @@ const toggleSelection = (sound) => {
     selectedSounds.value.splice(index, 1);
   } else {
     if (selectedSounds.value.length >= 5) {
-      max__select.value = true
-      setInterval(() => {
-        max__select.value = false
-      }, 3000)
+      max__select.value = true;
+      setTimeout(() => {
+        max__select.value = false;
+      }, 3000);
       return;
     }
     selectedSounds.value.push(sound);
   }
 };
 
-
 const addSounds = () => {
   if (selectedSounds.value.length === 0) {
-    mustSelect.value = true
-    setInterval(() => {
-      mustSelect.value = false
-    }, 3000)
+    mustSelect.value = true;
+    setTimeout(() => {
+      mustSelect.value = false;
+    }, 3000);
+    return;
+  }
+
+  if (myStore.tempExtraSound.length >= 5) {
+    max__select.value = true;
+    setTimeout(() => {
+      max__select.value = false;
+    }, 3000);
     return;
   }
 
   selectedSounds.value.forEach((sound) => {
     if (!myStore.tempExtraSound.some((item) => item.soundId === sound.soundId)) {
-      myStore.tempExtraSound.push(sound);
+      if (myStore.tempExtraSound.length < 5) {
+        myStore.tempExtraSound.push(sound);
+      } else {
+        max__select.value = true;
+        setTimeout(() => {
+          max__select.value = false;
+        }, 3000);
+      }
     } else {
-      sameSelect.value = true
-      setInterval(() => {
-        sameSelect.value = false
-      }, 3000)
+      sameSelect.value = true;
+      setTimeout(() => {
+        sameSelect.value = false;
+      }, 3000);
     }
   });
 
-  // Seçili sesleri sıfırla
   selectedSounds.value = [];
-
 };
+
 
 
 </script>

@@ -5,56 +5,71 @@
     <div class="container">
       <div v-if="cardDetail" class="card__detail">
         <h1 class="card__title">{{ cardDetail.cardName }}</h1>
-        <div class="detail__container">
-          <div class="detail__left">
-            <div class="card__cover">
-              <img :src="cardDetail.imageUrl" alt="Card Image" />
-            </div>
-          </div>
-          <div class="detail__right">
+        <div class="detail__info">
+          <img class="card__cover" :src="cardDetail.imageUrl" alt="Card Image" />
+          <div class="detail__overlay">
             <!--Extra Sounds-->
             <div class="extra__sounds-container">
-              <div v-for="(item, index) in myStore.tempExtraSound" :key="item.soundId">
-                <img :src="item.soundIcon" style="width: 20px" />
-                <audio :id=item.soundId :src="item.sound" controls autoplay loop></audio>
-                <span @click="removeSound(item.soundId)">X</span>
+              <div class="extra__sound" v-for="(item, index) in myStore.tempExtraSound" :key="item.soundId">
+                <img class="extra__sound-img" :src="item.soundIcon" />
+                <audio :id=item.soundId :src="item.sound" autoplay loop></audio>
+                <div class="extra__sound-volume">
+                  <span>{{ item.name }}</span>
+                  <input type="range" min="0" max="1" step="0.01" v-model="item.volume"
+                    @input="updateExtraVolume(index, item.volume)" />
+                </div>
+                <IconsClose class="deleteSound" @click="removeSound(item.soundId)" />
               </div>
-            </div>
-
-            <!--Countdown-->
-            <div v-if="myStore.countdown !== null" class="setTimer__container">
-              <h3>
-                {{ formatTime(myStore.countdown) }}
-              </h3>
-              <button class="clear__timer-btn" @click="myStore.clearTimer()">
-                Clear Timer
-              </button>
             </div>
 
             <!--Sound Control-->
-            <div class="sound__control">
-              <!--Add extra sounds-->
-              <UiAddExtraSoundBtn />
-
-              <!--Audio Player-->
-              <div class="audio-player">
-                <div class="playBtn" @click="myStore.toggleAudio">
-                  <IconsPause v-if="myStore.isPlaying" />
-                  <IconsPlay v-else />
-                </div>
-                <audio ref="audioElement" :src="cardDetail.sound" autoplay loop></audio>
+            <div class="sound__control-container">
+              <!--Countdown-->
+              <div v-if="myStore.countdown !== null" class="setTimer__container">
+                <h3>
+                  {{ formatTime(myStore.countdown) }}
+                </h3>
+                <button class="clear__timer-btn" @click="myStore.clearTimer()">
+                  Clear Timer
+                </button>
               </div>
-              <!--Set Timer-->
-              <uiSetTimerBtn />
+
+              <!--Play Pause-->
+              <div class="sound__control">
+                <!--Add extra sounds btn-->
+                <UiAddExtraSoundBtn />
+
+                <!--Audio Player-->
+                <div class="audio-player">
+                  <div class="playBtn" @click="myStore.toggleAudio">
+                    <IconsPause v-if="myStore.isPlaying" />
+                    <IconsPlay v-else />
+                  </div>
+                  <audio ref="audioElement" :src="cardDetail.sound" autoplay loop></audio>
+                </div>
+                <!--Set Timer-->
+                <uiSetTimerBtn />
+              </div>
+
+              <!--Volume Control-->
+              <div class="volume__control">
+                <input type="range" min="0" max="100" step="5" v-model="mainVolume" @input="updateMainVolume" />
+                <span>{{ mainVolume }}</span>
+              </div>
             </div>
           </div>
         </div>
+
+
       </div>
       <div v-else>
         <p>Card Info not found</p>
       </div>
     </div>
   </div>
+
+
+
 </template>
 
 <script setup>
@@ -68,7 +83,27 @@ const route = useRoute();
 const router = useRouter();
 
 const cardDetail = ref(null);
+
+
+// Main sound volume
 const audioElement = ref(null);
+const mainVolume = ref(100);
+
+const updateMainVolume = () => {
+  if (audioElement.value) {
+    audioElement.value.volume = mainVolume.value / 100;
+  }
+};
+
+
+// Extra sounds volume
+const updateExtraVolume = (index, volume) => {
+  let extraAudiosVolume = document.querySelectorAll(".extra__sounds-container audio")
+  if (extraAudiosVolume[index]) {
+    extraAudiosVolume[index].volume = volume;
+  }
+};
+
 
 
 const fetchData = async () => {
@@ -108,7 +143,15 @@ onMounted(async () => {
   //Check audio status
   myStore.setAudioRef(audioElement.value);
   myStore.playAudio();
+
+  audioElement.value = document.querySelector("audio");
+  if (audioElement.value) {
+    audioElement.value.volume = mainVolume.value / 100;
+  }
+
 });
+
+
 </script>
 
 <style scoped lang="scss">
@@ -118,99 +161,212 @@ onMounted(async () => {
     margin-bottom: 40px;
   }
 
-  .detail__container {
-    display: flex;
-    gap: 30px;
+  .detail__info {
+    width: 100%;
+    height: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
 
-    .detail__left {
-      width: 50%;
-
-      .card__cover {
-        max-width: 300px;
-        width: 300px;
-        max-height: 400px;
-        height: 400px;
-        border-radius: 10px;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
+    .card__cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .detail__right {
-      width: 50%;
+    .detail__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
 
-
-      .extra__sounds-container {}
-
-
-      .setTimer__container {
+      .extra__sounds-container {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 10px;
 
-        h3 {
-          color: $primary;
-        }
-
-        .clear__timer-btn {
-          border: 1px solid $primary;
+        .extra__sound {
+          width: 250px;
           padding: 5px 10px;
-          font-weight: 500;
-          background: none;
-          border-radius: 8px;
-          color: $primary;
-          cursor: pointer;
+          background: rgba(255, 255, 255, 0.486);
+          border-radius: 10px;
+          backdrop-filter: blur(5.4px);
+          -webkit-backdrop-filter: blur(5.4px);
+          border: 1px solid rgba(255, 255, 255, 0.43);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .extra__sound-img {
+            min-width: 30px;
+            max-width: 30px;
+            height: 45px;
+            border-radius: 5px;
+          }
+
+          .extra__sound-volume {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            span {
+              color: $white;
+              font-style: italic;
+            }
+
+            input {
+              width: 100%;
+              appearance: none;
+              height: 6px;
+              background: $white;
+              outline: none;
+              border-radius: 5px;
+
+              &::-webkit-slider-thumb {
+                appearance: none;
+                width: 15px;
+                height: 15px;
+                background: $primary;
+                border-radius: 50%;
+                cursor: pointer;
+              }
+            }
+
+          }
+
+          .deleteSound {
+            cursor: pointer;
+          }
+
         }
       }
 
-      .sound__control {
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
+      .sound__control-container {
+        height: 100px;
+        background: rgba(255, 255, 255, 0.486);
+        border-radius: 16px;
+        backdrop-filter: blur(5.4px);
+        -webkit-backdrop-filter: blur(5.4px);
+        border: 1px solid rgba(255, 255, 255, 0.43);
+        position: relative;
 
-        .playBtn {
-          background-color: $primary;
-          border-radius: 50%;
-          width: 50px;
-          height: 50px;
-          font-size: 20px;
+        .setTimer__container {
           display: flex;
-          justify-content: center;
           align-items: center;
-          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-          cursor: pointer;
-          transition: transform 0.2s ease;
+          gap: 10px;
+          position: absolute;
+          top: 50%;
+          left: 30px;
+          transform: translate(0%, -50%);
 
-          &:hover {
-            transform: scale(1.1);
+          h3 {
+            color: $primary;
+          }
+
+          .clear__timer-btn {
+            border: 1px solid $primary;
+            padding: 5px 10px;
+            font-weight: 500;
+            background: none;
+            border-radius: 8px;
+            color: $primary;
+            cursor: pointer;
           }
         }
 
-        .timer {
-          cursor: pointer;
-          transition: transform 0.2s ease;
+        .sound__control {
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
 
-          &:hover {
-            transform: scale(1.1);
+          .playBtn {
+            background-color: $primary;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+
+          .timer {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+
+            &:hover {
+              transform: scale(1.1);
+            }
           }
         }
+
+        .volume__control {
+          position: absolute;
+          top: 50%;
+          right: 30px;
+          transform: translate(0%, -50%);
+          width: 220px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          input {
+            width: 80%;
+            appearance: none;
+            height: 6px;
+            background: $white;
+            outline: none;
+            border-radius: 5px;
+
+            &::-webkit-slider-thumb {
+              appearance: none;
+              width: 20px;
+              height: 20px;
+              background: $primary;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+          }
+
+          span {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px;
+            background: $primary;
+            color: $white;
+          }
+        }
+
       }
     }
+
+
   }
+
 }
 
 /*---------------Media Queries--------------*/
@@ -218,29 +374,6 @@ onMounted(async () => {
   .card__detail {
     .card__title {
       margin-bottom: 30px;
-    }
-
-    .detail__container {
-      flex-direction: column;
-      gap: 20px;
-
-      .detail__left {
-        width: 100%;
-
-        .card__cover {
-          max-width: unset;
-          width: 100%;
-          max-height: unset;
-          height: 250px;
-        }
-      }
-
-      .detail__right {
-        width: 100%;
-        height: 200px;
-
-        .extra__sounds-container {}
-      }
     }
   }
 }

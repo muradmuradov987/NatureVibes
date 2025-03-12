@@ -4,7 +4,7 @@
       <h2> Set The Timer Duration</h2>
       <div class="modal__body">
         <div>
-          <input type="radio" id="time5" name="timer" value="5" v-model="myStore.duration" />
+          <input type="radio" id="time5" name="timer" value="300" v-model="myStore.duration" />
           <label for="time5">5 Minutes</label>
         </div>
         <div>
