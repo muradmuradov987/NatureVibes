@@ -41,14 +41,6 @@ export default defineEventHandler((event) => {
           isLocked: true,
           premiumCard: true,
         },
-        {
-          cardId: 6,
-          cardName: "Thunderstorm",
-          imageUrl: "/images/Rain/Thunderstorm.jpg",
-          sound: "/sounds/Rain/Thunderstorm.mp3",
-          isLocked: true,
-          premiumCard: true,
-        },
       ],
     },
     //Nature

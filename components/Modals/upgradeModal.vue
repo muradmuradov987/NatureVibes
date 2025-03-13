@@ -51,6 +51,7 @@ const myStore = useStore();
     flex-direction: column;
     gap: 20px;
     z-index: 2;
+    animation: modalIn 0.7s ease-in-out;
 
     .crown {
       width: 50px;
@@ -106,6 +107,18 @@ const myStore = useStore();
     }
   }
 }
+@keyframes modalIn {
+  0% {
+    scale: 0;
+    transform: translateY(500px);
+  }
+
+  100% {
+    scale: 1;
+    transform: translateY(0px);
+  }
+}
+
 
 .dark {
   .modal {

@@ -99,17 +99,13 @@ const addSounds = () => {
 </script>
 
 <style lang="scss" scoped>
-.disabled {
-  border-radius: unset !important;
-}
-
 .modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
   display: flex;
   align-items: center;
@@ -119,7 +115,6 @@ const addSounds = () => {
     max-width: 500px;
     width: 100%;
     height: 500px;
-    background: $white;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -127,14 +122,20 @@ const addSounds = () => {
     justify-content: space-between;
     gap: 20px;
     z-index: 2;
+    animation: modalIn 0.7s ease-in-out;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 
     .modal__title {
       text-align: center;
       font-size: 27px;
+      color: $white;
     }
 
     .info__msg {
       color: red;
+      font-style: italic;
       font-size: 14px;
       text-align: center;
       display: block;
@@ -159,6 +160,8 @@ const addSounds = () => {
 
       .sound__title {
         margin-bottom: 10px;
+        color: $white;
+
       }
 
       .sounds__container {
@@ -167,8 +170,8 @@ const addSounds = () => {
       }
 
       .sound__icon {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         overflow: hidden;
         display: flex;
@@ -176,10 +179,9 @@ const addSounds = () => {
         align-items: center;
         cursor: pointer;
         border: 2px solid transparent;
-
         img {
-          width: 30px;
-          height: 30px;
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
         }
       }
@@ -194,6 +196,19 @@ const addSounds = () => {
       justify-content: center;
       gap: 10px;
     }
+  }
+}
+
+
+@keyframes modalIn {
+  0% {
+    scale: 0;
+    transform: translateY(500px);
+  }
+
+  100% {
+    scale: 1;
+    transform: translateY(0px);
   }
 }
 </style>

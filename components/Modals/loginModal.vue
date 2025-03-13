@@ -51,6 +51,7 @@ const myStore = useStore();
     align-items: center;
     gap: 20px;
     z-index: 2;
+    animation: modalIn 0.7s ease-in-out;
 
     .modal__logo-container {
       height: 60px;
@@ -95,6 +96,18 @@ const myStore = useStore();
     }
   }
 }
+@keyframes modalIn {
+  0% {
+    scale: 0;
+    transform: translateY(500px);
+  }
+
+  100% {
+    scale: 1;
+    transform: translateY(0px);
+  }
+}
+
 
 .dark {
   .modal {

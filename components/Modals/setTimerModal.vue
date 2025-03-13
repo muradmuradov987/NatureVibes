@@ -59,7 +59,7 @@ const myStore = useStore();
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
   display: flex;
   align-items: center;
@@ -76,9 +76,15 @@ const myStore = useStore();
     flex-direction: column;
     gap: 20px;
     z-index: 2;
+    animation: modalIn 0.7s ease-in-out;
 
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(223, 216, 216, 0.3);
     h2 {
       text-align: center;
+      color: $white;
+
     }
 
     .modal__body {
@@ -106,6 +112,7 @@ const myStore = useStore();
         cursor: pointer;
         position: relative;
         font-size: 18px;
+        color: $white;
 
         &::before {
           content: "";
@@ -135,14 +142,7 @@ const myStore = useStore();
         }
       }
 
-      .clear__timer-btn {
-        padding: 3px 8px;
-        border-radius: 5px;
-        border: 1px solid $primary;
-        font-size: 14px;
-        cursor: pointer;
-        font-weight: 500;
-      }
+
     }
 
     .modal__footer {
@@ -153,23 +153,16 @@ const myStore = useStore();
   }
 }
 
-.dark {
-  .modal {
-    background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+@keyframes modalIn {
+  0% {
+    scale: 0;
+    transform: translateY(500px);
+  }
 
-    h2 {
-      color: $white;
-    }
-    label{
-      color: $white;
-    }
-    p {
-      color: $white;
-    }
-
-    .secondary__btn {
-      color: $white;
-    }
+  100% {
+    scale: 1;
+    transform: translateY(0px);
   }
 }
+
 </style>

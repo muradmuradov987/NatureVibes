@@ -18,7 +18,7 @@
                   <input type="range" min="0" max="1" step="0.01" v-model="item.volume"
                     @input="updateExtraVolume(index, item.volume)" />
                 </div>
-                <IconsClose class="deleteSound" @click="removeSound(item.soundId)" />
+                <IconsClose class="deleteSound" @click="removeSound(item.soundId, index, item.volume)" />
               </div>
             </div>
 
@@ -133,7 +133,8 @@ const formatTime = (seconds) => {
 };
 
 
-const removeSound = (id) => {
+const removeSound = (id, index) => {
+  myStore.tempExtraSound[index].volume = 1
   myStore.tempExtraSound = myStore.tempExtraSound.filter(item => item.soundId !== id)
 };
 
@@ -184,7 +185,7 @@ onMounted(async () => {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.3);
 
       .extra__sounds-container {
         display: flex;
@@ -192,26 +193,25 @@ onMounted(async () => {
         gap: 10px;
 
         .extra__sound {
-          width: 250px;
+          width: 300px;
           padding: 5px 10px;
-          background: rgba(255, 255, 255, 0.486);
+          background: rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 10px;
-          backdrop-filter: blur(5.4px);
-          -webkit-backdrop-filter: blur(5.4px);
-          border: 1px solid rgba(255, 255, 255, 0.43);
           display: flex;
           align-items: center;
           justify-content: space-between;
 
           .extra__sound-img {
-            min-width: 30px;
-            max-width: 30px;
-            height: 45px;
+            min-width: 50px;
+            max-width: 50px;
+            height: 50px;
             border-radius: 5px;
           }
 
           .extra__sound-volume {
-            width: 70%;
+            width: 65%;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -228,6 +228,7 @@ onMounted(async () => {
               background: $white;
               outline: none;
               border-radius: 5px;
+              cursor: pointer;
 
               &::-webkit-slider-thumb {
                 appearance: none;
@@ -250,11 +251,14 @@ onMounted(async () => {
 
       .sound__control-container {
         height: 100px;
-        background: rgba(255, 255, 255, 0.486);
         border-radius: 16px;
-        backdrop-filter: blur(5.4px);
-        -webkit-backdrop-filter: blur(5.4px);
-        border: 1px solid rgba(255, 255, 255, 0.43);
+
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        // backdrop-filter: blur(5.4px);
+        // -webkit-backdrop-filter: blur(5.4px);
+        // border: 1px solid rgba(255, 255, 255, 0.43);
         position: relative;
 
         .setTimer__container {
@@ -337,6 +341,7 @@ onMounted(async () => {
             background: $white;
             outline: none;
             border-radius: 5px;
+            cursor: pointer;
 
             &::-webkit-slider-thumb {
               appearance: none;
