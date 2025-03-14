@@ -2,10 +2,11 @@
   <div class="modal__overlay" @click="myStore.closeModal()">
     <div class="modal" @click.stop>
       <div>
-        <h2 class="modal__title">Add extra sound</h2>
+        <h2 class="modal__title">Extra sounds</h2>
         <span class="info__msg" v-if="max__select">You can select and add a maximum of 5 votes!</span>
         <span class="info__msg" v-if="mustSelect">Please select at least one sound!</span>
         <span class="info__msg" v-if="sameSelect">The added element cannot be added again.</span>
+        <span class="info__msg" v-if="premiumInfo">aaaaaa</span>
       </div>
       <div class="modal__body">
         <div v-for="item in myStore.extraSoundData">
@@ -14,6 +15,8 @@
             <div class="sound__icon" :class="{ selected: selectedSounds.some((s) => s.soundId === sound.soundId) }"
               v-for="sound in item.extraSound" :key="sound.soundId" @click="toggleSelection(sound)">
               <img :src="sound.soundIcon" />
+              <iconsLock class="lock" v-if="sound.isLocked && sound.premiumSound" />
+              <iconsUnLock class="lock" v-if="!sound.isLocked && sound.premiumSound" />
             </div>
           </div>
         </div>
@@ -38,26 +41,46 @@ const selectedSounds = ref([]);
 const max__select = ref(false);
 const mustSelect = ref(false);
 const sameSelect = ref(false);
+const premiumInfo = ref(false);
+
+const resetInfoMessage = () => {
+  max__select.value = false
+  mustSelect.value = false
+  sameSelect.value = false
+  premiumInfo.value = false
+}
 
 
 const toggleSelection = (sound) => {
-  const index = selectedSounds.value.findIndex((s) => s.soundId === sound.soundId);
-  if (index !== -1) {
-    selectedSounds.value.splice(index, 1);
+  if (sound.isLocked) {
+    premiumInfo.value = true;
+    setTimeout(() => {
+      premiumInfo.value = false;
+    }, 3000);
+    return;
   } else {
-    if (selectedSounds.value.length >= 5) {
-      max__select.value = true;
-      setTimeout(() => {
-        max__select.value = false;
-      }, 3000);
-      return;
+    const index = selectedSounds.value.findIndex((s) => s.soundId === sound.soundId);
+    if (index !== -1) {
+      selectedSounds.value.splice(index, 1);
+    } else {
+      if (selectedSounds.value.length >= 5) {
+        resetInfoMessage()
+        max__select.value = true;
+        setTimeout(() => {
+          max__select.value = false;
+        }, 3000);
+        return;
+      }
+      selectedSounds.value.push(sound);
     }
-    selectedSounds.value.push(sound);
+
   }
+
 };
 
 const addSounds = () => {
   if (selectedSounds.value.length === 0) {
+    resetInfoMessage()
     mustSelect.value = true;
     setTimeout(() => {
       mustSelect.value = false;
@@ -66,6 +89,7 @@ const addSounds = () => {
   }
 
   if (myStore.tempExtraSound.length >= 5) {
+    resetInfoMessage()
     max__select.value = true;
     setTimeout(() => {
       max__select.value = false;
@@ -78,12 +102,14 @@ const addSounds = () => {
       if (myStore.tempExtraSound.length < 5) {
         myStore.tempExtraSound.push(sound);
       } else {
+        resetInfoMessage()
         max__select.value = true;
         setTimeout(() => {
           max__select.value = false;
         }, 3000);
       }
     } else {
+      resetInfoMessage()
       sameSelect.value = true;
       setTimeout(() => {
         sameSelect.value = false;
@@ -146,7 +172,7 @@ const addSounds = () => {
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 15px;
 
       &::-webkit-scrollbar {
         width: 3px;
@@ -159,7 +185,6 @@ const addSounds = () => {
       }
 
       .sound__title {
-        margin-bottom: 10px;
         color: $white;
 
       }
@@ -179,10 +204,19 @@ const addSounds = () => {
         align-items: center;
         cursor: pointer;
         border: 2px solid transparent;
+        position: relative;
+
         img {
           width: 50px;
           height: 50px;
           border-radius: 50%;
+        }
+
+        .lock {
+          position: absolute;
+          top: 7px;
+          right: 5px;
+          width: 10px;
         }
       }
 

@@ -31,8 +31,18 @@ export const useStore = defineStore("store", () => {
   const getExtraSoundsData = async () => {
     if (extraSoundData.value.length > 0) return;
     try {
+      console.log("Men isledim detal sehifeyem");
+      
       const fetchedData = await $fetch("/api/extraSoundData");
       extraSoundData.value = fetchedData || [];
+      //Check premium extra sounds
+      if (isPremium.value) {
+        extraSoundData.value.forEach((item) => {
+          item.extraSound.forEach((sound) => {
+            sound.isLocked = false;
+          });
+        });
+      }
     } catch (error) {
       console.error("Fetch Error:", error);
     }
@@ -131,7 +141,8 @@ export const useStore = defineStore("store", () => {
   //isPremium
   const isPremium = ref(false);
 
-  const unlockCards = () => {
+  const upgradeToPremium = () => {
+    isPremium.value = true;
     if (isPremium.value) {
       appData.value.forEach((category) => {
         category.card.forEach((card) => {
@@ -161,7 +172,7 @@ export const useStore = defineStore("store", () => {
     tempExtraSound,
     isLoggedIn, //login
     isPremium, //premium
-    unlockCards,
+    upgradeToPremium, // Open the premium features
     modalTitle, //modal title
     showModal, //show modal
     closeModal, //close modal

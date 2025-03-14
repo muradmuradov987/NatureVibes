@@ -18,15 +18,12 @@
 import { useStore } from '~/store/store';
 const myStore = useStore();
 
-const upgradeToPremium = () => {
-    myStore.isPremium = true;
-    myStore.unlockCards();
-};
+
 
 
 onMounted(async () => {
     await myStore.getSoundsData();
-    upgradeToPremium()
+    // myStore.upgradeToPremium()
 });
 </script>
 

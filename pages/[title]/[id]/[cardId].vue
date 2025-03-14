@@ -164,7 +164,7 @@ onMounted(async () => {
 
   .detail__info {
     width: 100%;
-    height: 500px;
+    height: 600px;
     border-radius: 16px;
     overflow: hidden;
     position: relative;
