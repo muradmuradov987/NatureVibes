@@ -1,18 +1,7 @@
-extra sound sesleri duzeltmek
-sekilleri duzeltmek
-name artırmaq
-
-
-
-modalin dark modu ve animasiyasi ve responsivi
-
-Premiuim sesleri ayir
-
 Uprade sehifesi
 Login sehifesi
 Dil elave etmek
 Contact sehifesi
 Animasiyalar
-Zamanlayici modal
-Sesleri import etmek
-Seslerin dogru axinini yoxlamaq
+
+

@@ -60,10 +60,11 @@ const myStore = useStore();
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 
   .modal {
     max-width: 500px;
@@ -77,10 +78,10 @@ const myStore = useStore();
     gap: 20px;
     z-index: 2;
     animation: modalIn 0.7s ease-in-out;
-
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(223, 216, 216, 0.3);
+
     h2 {
       text-align: center;
       color: $white;
@@ -94,7 +95,6 @@ const myStore = useStore();
       gap: 10px;
       width: 150px;
       margin: 0 auto;
-
 
       input {
         display: none;
@@ -141,8 +141,6 @@ const myStore = useStore();
           transition: 400ms ease;
         }
       }
-
-
     }
 
     .modal__footer {
@@ -156,13 +154,25 @@ const myStore = useStore();
 @keyframes modalIn {
   0% {
     scale: 0;
-    transform: translateY(500px);
   }
 
   100% {
     scale: 1;
-    transform: translateY(0px);
   }
 }
 
+
+
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+  .modal__overlay {
+    .modal {
+      padding: 15px;
+      h2 {
+        font-size: 22px;
+      }
+    }
+  }
+}
 </style>

@@ -4,5 +4,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const myStore = useStore();
   myStore.tempExtraSound = [];
   myStore.clearTimer()
+  myStore.closeModal()
 
 });

@@ -38,6 +38,7 @@ const myStore = useStore();
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 
   .modal {
     max-width: 500px;
@@ -89,6 +90,11 @@ const myStore = useStore();
       text-align: center;
       font-size: 27px;
     }
+
+    p {
+      text-align: center;
+    }
+
     .modal__footer {
       display: flex;
       justify-content: center;
@@ -96,6 +102,7 @@ const myStore = useStore();
     }
   }
 }
+
 @keyframes modalIn {
   0% {
     scale: 0;
@@ -112,6 +119,7 @@ const myStore = useStore();
 .dark {
   .modal {
     background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+
     .modal__logo-container {
       h3 {
         color: $white;

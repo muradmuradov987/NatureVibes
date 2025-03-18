@@ -195,7 +195,7 @@ onMounted(async () => {
         .extra__sound {
           width: 300px;
           padding: 5px 10px;
-          background: rgba(0, 0, 0, 0.2);
+          background: rgba(255, 255, 255, 0.4);
           backdrop-filter: blur(5px);
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 10px;
@@ -253,12 +253,9 @@ onMounted(async () => {
         height: 100px;
         border-radius: 16px;
 
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.4);
         backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.3);
-        // backdrop-filter: blur(5.4px);
-        // -webkit-backdrop-filter: blur(5.4px);
-        // border: 1px solid rgba(255, 255, 255, 0.43);
         position: relative;
 
         .setTimer__container {
@@ -374,20 +371,93 @@ onMounted(async () => {
 
 }
 
+.dark {
+  .card__title {
+    color: $white;
+  }
+}
+
 /*---------------Media Queries--------------*/
 @media (max-width: 767px) {
   .card__detail {
     .card__title {
       margin-bottom: 30px;
     }
-  }
-}
 
-.dark {
-  .card__detail {
-    .card__title {
-      color: $white;
+    .detail__info {
+      height: 500px;
+      border-radius: 10px;
+
+      .detail__overlay {
+        padding: 15px;
+
+        .extra__sounds-container {
+          .extra__sound {
+            .extra__sound-img {
+              min-width: 40px;
+              max-width: 40px;
+              height: 40px;
+            }
+          }
+        }
+
+        .sound__control-container {
+          height: auto;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 10px;
+          padding: 10px;
+
+          .setTimer__container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: unset;
+            top: unset;
+            left: unset;
+            transform: unset;
+
+            h3 {
+              color: $primary;
+            }
+
+            .clear__timer-btn {
+              border: 1px solid $primary;
+              padding: 5px 10px;
+              font-weight: 500;
+              background: none;
+              border-radius: 8px;
+              color: $primary;
+              cursor: pointer;
+            }
+          }
+
+          .sound__control {
+            gap: 25px;
+            position: unset;
+            top: unset;
+            left: unset;
+            transform: unset;
+          }
+
+          .volume__control {
+            position: unset;
+            top: unset;
+            right: unset;
+            transform: unset;
+            width: 100%;
+            justify-content: space-between;
+          }
+
+        }
+      }
+
+
     }
+
   }
 }
 </style>

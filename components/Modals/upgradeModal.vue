@@ -39,6 +39,7 @@ const myStore = useStore();
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 
   .modal {
     max-width: 500px;

@@ -1,12 +1,12 @@
 <template>
   <div class="modal__overlay" @click="myStore.closeModal()">
     <div class="modal" @click.stop>
-      <div>
+      <div class="validation__info">
         <h2 class="modal__title">Extra sounds</h2>
         <span class="info__msg" v-if="max__select">You can select and add a maximum of 5 votes!</span>
         <span class="info__msg" v-if="mustSelect">Please select at least one sound!</span>
         <span class="info__msg" v-if="sameSelect">The added element cannot be added again.</span>
-        <span class="info__msg" v-if="premiumInfo">aaaaaa</span>
+        <span class="info__msg" v-if="premiumInfo">You need to unlock premium features.</span>
       </div>
       <div class="modal__body">
         <div v-for="item in myStore.extraSoundData">
@@ -136,6 +136,7 @@ const addSounds = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 
   .modal {
     max-width: 500px;
@@ -153,18 +154,22 @@ const addSounds = () => {
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
-    .modal__title {
-      text-align: center;
-      font-size: 27px;
-      color: $white;
-    }
+    .validation__info {
+      height: 75px;
 
-    .info__msg {
-      color: red;
-      font-style: italic;
-      font-size: 14px;
-      text-align: center;
-      display: block;
+      .modal__title {
+        text-align: center;
+        font-size: 27px;
+        color: $white;
+      }
+
+      .info__msg {
+        color: red;
+        font-style: italic;
+        font-size: 14px;
+        text-align: center;
+        display: block;
+      }
     }
 
     .modal__body {
@@ -237,12 +242,52 @@ const addSounds = () => {
 @keyframes modalIn {
   0% {
     scale: 0;
-    transform: translateY(500px);
   }
 
   100% {
     scale: 1;
-    transform: translateY(0px);
+  }
+}
+
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+  .modal__overlay {
+    .modal {
+      padding: 15px;
+
+      .modal__title {
+        font-size: 22px;
+      }
+
+      .info__msg {
+        font-size: 12px;
+      }
+
+      .modal__body {
+        .sound__title {
+          color: $white;
+        }
+
+        .sounds__container {
+          display: flex;
+        }
+
+        .sound__icon {
+          width: 40px;
+          height: 40px;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+
+          .lock {
+            width: 8px;
+          }
+        }
+      }
+    }
   }
 }
 </style>

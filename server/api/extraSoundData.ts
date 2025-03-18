@@ -43,7 +43,8 @@ export default defineEventHandler((event) => {
           name: "Rain under Umbrella",
           soundIcon: "/images/Extra Sounds img/Rain/Rain under Umbrella.png",
           sound: "/sounds/Rain/Rain under Umbrella.mp3",
-          isLocked: false,
+          isLocked: true,
+          premiumSound: true,
         },
         {
           soundId: Math.random(),

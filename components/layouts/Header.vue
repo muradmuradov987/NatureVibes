@@ -14,7 +14,7 @@
 
                 <div class="nav__right">
                     <!--Upgrade-->
-                    <NuxtLink to="/upgrade" class="upgradeBtn" v-if="myStore.isLoggedIn">
+                    <NuxtLink to="/upgrade" class="upgradeBtn">
                         <IconsCrown /> <span>Upgrade</span>
                     </NuxtLink>
                     <!--Language-->
@@ -68,6 +68,7 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: 0.5s ease-in-out;
     background: $white;
+
     nav {
         height: 80px;
         display: flex;
@@ -352,7 +353,4 @@ header {
     }
 
 }
-
-
-
 </style>
