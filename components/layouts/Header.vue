@@ -39,7 +39,7 @@
                     </div>
 
                     <!--Login btn-->
-                    <NuxtLink to="/login" class="loginBtn">
+                    <NuxtLink to="/login-signUp" class="loginBtn">
                         Login
                     </NuxtLink>
                 </div>
