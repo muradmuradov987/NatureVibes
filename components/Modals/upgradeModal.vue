@@ -111,12 +111,10 @@ const myStore = useStore();
 @keyframes modalIn {
   0% {
     scale: 0;
-    transform: translateY(500px);
   }
 
   100% {
     scale: 1;
-    transform: translateY(0px);
   }
 }
 
