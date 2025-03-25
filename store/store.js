@@ -31,7 +31,6 @@ export const useStore = defineStore("store", () => {
   const getExtraSoundsData = async () => {
     if (extraSoundData.value.length > 0) return;
     try {
-      console.log("Men isledim detal sehifeyem");
       
       const fetchedData = await $fetch("/api/extraSoundData");
       extraSoundData.value = fetchedData || [];
