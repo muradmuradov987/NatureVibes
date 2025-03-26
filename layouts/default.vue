@@ -3,7 +3,6 @@
     <uiLoading />
     <layoutsHeader />
     <NuxtPage />
-    <!-- <slot /> -->
     <layoutsFooter />
   </div>
 </template>
@@ -11,6 +10,8 @@
 <script setup>
 import { useStore } from "~/store/store";
 const myStore = useStore();
+
+
 </script>
 
 <style scoped lang="scss">

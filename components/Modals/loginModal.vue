@@ -10,7 +10,7 @@
       <h2 class="modal__title">Login or Sign up</h2>
       <p>You need to log in to access premium sounds and features.</p>
       <div class="modal__footer">
-        <button class="primary__btn" @click="$router.push('/login-signUp')">Go to Login</button>
+        <button class="primary__btn" @click="$router.push('/login')">Go to Login</button>
         <button class="secondary__btn" @click="myStore.closeModal()">
           Cancel
         </button>

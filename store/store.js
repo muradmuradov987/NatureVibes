@@ -31,7 +31,6 @@ export const useStore = defineStore("store", () => {
   const getExtraSoundsData = async () => {
     if (extraSoundData.value.length > 0) return;
     try {
-      
       const fetchedData = await $fetch("/api/extraSoundData");
       extraSoundData.value = fetchedData || [];
       //Check premium extra sounds
@@ -132,10 +131,14 @@ export const useStore = defineStore("store", () => {
     countdown.value = null;
   };
 
-  /////////////////////////////////////////////
-
+  ////////////////////AUTH/////////////////////////
   //isLoggedIn
   const isLoggedIn = ref(false);
+
+  //Show forms
+  const formTitle = ref("login");
+
+  /////////////////////////////////////////////////
 
   //isPremium
   const isPremium = ref(false);
@@ -169,7 +172,6 @@ export const useStore = defineStore("store", () => {
     extraSoundData, //Extra sounds data
     getExtraSoundsData, // Extra sound data (Func)
     tempExtraSound,
-    isLoggedIn, //login
     isPremium, //premium
     upgradeToPremium, // Open the premium features
     modalTitle, //modal title
@@ -186,5 +188,11 @@ export const useStore = defineStore("store", () => {
     isPlaying, // sound play status
     setTimer, // set timer (func)
     clearTimer, //clear time (func)
+
+
+    //Auth
+    isLoggedIn, //auth status
+    formTitle, //show auth comp
+
   };
 });

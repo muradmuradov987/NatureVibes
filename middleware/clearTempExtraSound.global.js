@@ -5,5 +5,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
   myStore.tempExtraSound = [];
   myStore.clearTimer()
   myStore.closeModal()
+  myStore.formTitle = 'login'
 
 });
