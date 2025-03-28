@@ -56,11 +56,11 @@
     </p>
     <div class="or">or</div>
     <div class="login__social">
-      <a class="google" href="#"
+      <a class="google"
         ><img src="../../public/images/plugins/google.png" />Continue with
         Google</a
       >
-      <a class="facebook" href="#"
+      <a class="facebook"
         ><img src="../../public/images/plugins/facebook.png" />Continue with
         Facebook</a
       >
@@ -72,7 +72,6 @@
 //Store
 import { useStore } from "~/store/store";
 const myStore = useStore();
-const client = useSupabaseClient();
 
 //SignUp
 const signUpFields = reactive({

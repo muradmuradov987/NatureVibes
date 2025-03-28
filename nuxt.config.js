@@ -13,16 +13,8 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ["@pinia/nuxt", "@nuxt/image", "@nuxtjs/supabase"],
-  runtimeConfig: {
-    public: {
-      SUPABASE_URL: process.env.SUPABASE_URL,
-      SUPABASE_KEY: process.env.SUPABASE_KEY,
-    },
-  },
-  supabase: {
-    redirect: false,
-  },
+  modules: ["@pinia/nuxt", "@nuxt/image"],
+
   nitro: {
     routeRules: {
       "/_nuxt/**": { cache: { maxAge: 3600 } },
