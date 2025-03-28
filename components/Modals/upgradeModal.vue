@@ -7,7 +7,7 @@
         Starting at just <span>$4.99</span>/month, you can take your relaxation journey to the next level.</p>
       <div class="benefits">
         <h4>Benefits include:</h4>
-        <p>Over 20 Exclusive Sounds</p>
+        <p>Over 15 Exclusive Sounds</p>
         <p>Unlimited Access</p>
         <p>Early Access to Updates</p>
       </div>
@@ -110,10 +110,12 @@ const myStore = useStore();
 }
 @keyframes modalIn {
   0% {
-    scale: 0;
+    opacity: 0;
+    scale: 0.5;
   }
 
   100% {
+    opacity: 1;
     scale: 1;
   }
 }

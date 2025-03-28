@@ -1,4 +1,5 @@
 <template>
+  <ModalsSuccessModal v-if="myStore.modalTitle == 'success'" />
   <form class="signUp__form" @submit.prevent="signup">
     <div class="form__title">
       <NuxtLink to="/" class="logo">
@@ -71,7 +72,7 @@
 //Store
 import { useStore } from "~/store/store";
 const myStore = useStore();
-
+const client = useSupabaseClient();
 
 //SignUp
 const signUpFields = reactive({
@@ -86,81 +87,31 @@ const signUpErrors = reactive({
   passwordLength: false,
 });
 
-// const client = useSupabaseClient()
-// const signup = async () => {
-//   signUpErrors.fullName = signUpFields.fullName ? false : true;
-//   signUpErrors.email = signUpFields.email ? false : true;
-//   signUpErrors.password = signUpFields.password ? false : true;
-//   if (signUpFields.password?.length < 6) {
-//     signUpErrors.passwordLength = true;
-//   } else {
-//     signUpErrors.passwordLength = false;
-//   }
-//   if (
-//     !signUpErrors.fullName &&
-//     !signUpErrors.email &&
-//     !signUpErrors.password &&
-//     !signUpErrors.passwordLength
-//   ) {
-//     try{
-//       const {data, error} = await client.auth.signUp({
-//         fullName: signUpFields.fullName,
-//         email: signUpFields.email,
-//         password: signUpFields.password,
-//       })
-//       if(error) throw error
-//       console.log("Kayıt yapılıyor:",data);
-//     }catch(err){
-//       console.log(err);
-//     }
-//   }
-// };
-
-const client = useSupabaseClient()
-
 const signup = async () => {
-  // Hata mesajlarını sıfırla
   signUpErrors.fullName = !signUpFields.fullName;
   signUpErrors.email = !signUpFields.email;
   signUpErrors.password = !signUpFields.password;
-  
+
   if (signUpFields.password?.length < 6) {
     signUpErrors.passwordLength = true;
   } else {
     signUpErrors.passwordLength = false;
   }
-
-  // Tüm hataları kontrol et
-  if (!signUpErrors.fullName && !signUpErrors.email && !signUpErrors.password && !signUpErrors.passwordLength) {
-    try {
-      const { data, error } = await client.auth.signUp({
-        email: signUpFields.email,
-        password: signUpFields.password,
-      });
-      if (error) throw error;
-
-      console.log("Kayıt başarılı:", data);
-
-      const user = data.user;
-
-      if (user) {
-        // Kullanıcı profilini güncelle
-        const { error: updateError } = await client
-          .from('profiles') // Profil bilgilerini tutan tablo
-          .upsert({ id: user.id, full_name: signUpFields.fullName })
-          .single(); 
-
-        if (updateError) throw updateError;
-
-        console.log("Profil başarıyla güncellendi!");
-      }
-
-    } catch (err) {
-      console.error("Kayıt sırasında hata oluştu:", err);
-    }
+  if (
+    signUpErrors.fullName ||
+    signUpErrors.email ||
+    signUpErrors.password ||
+    signUpErrors.passwordLength
+  ) {
+    return;
   }
-};
 
+  signUpFields.fullName = null;
+  signUpFields.email = null;
+  signUpFields.password = null;
+
+  myStore.modalTitle = "success";
+};
 
 //Toggle password
 const showPass = ref(false);

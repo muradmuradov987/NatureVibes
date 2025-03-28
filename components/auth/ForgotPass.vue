@@ -1,4 +1,5 @@
 <template>
+  <ModalsForgotPassModal v-if="myStore.modalTitle == 'forgotPass'" />
   <form class="forget__pass" @submit.prevent="forgotPassword">
     <div class="form__title">
       <NuxtLink to="/" class="logo">
@@ -36,7 +37,8 @@ const forgotPassword = () => {
   forgotPasswordErrors.email = forgotEmail.value ? false : true;
 
   if (!forgotPasswordErrors.email) {
-    console.log("Şifre sıfırlama isteği gönderiliyor:");
+    myStore.modalTitle = "forgotPass";
+    forgotEmail.value = null;
   }
 };
 </script>

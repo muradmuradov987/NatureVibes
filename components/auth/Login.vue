@@ -56,10 +56,14 @@
 import { useStore } from "~/store/store";
 const myStore = useStore();
 
+//Router
+import { useRoute } from "vue-router";
+const router = useRouter();
+
 //Login
 const loginFields = reactive({
-  email: null,
-  password: null,
+  email: "test@natureVibes.com",
+  password: 123456,
 });
 
 const loginErrors = reactive({
@@ -83,7 +87,14 @@ const login = () => {
   loginErrors.email = loginFields.email ? false : true;
   loginErrors.password = loginFields.password ? false : true;
   if (!loginErrors.email && !loginErrors.password) {
-    console.log("Giriş yapılıyor:");
+    loginFields.email = null;
+    loginFields.password = null;
+    router.push("/");
+    myStore.isLoggedIn = true;
+    myStore.isLoading = true;
+    setTimeout(() => {
+      myStore.isLoading = false;
+    }, 1500);
   }
 };
 </script>

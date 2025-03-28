@@ -105,10 +105,12 @@ const myStore = useStore();
 
 @keyframes modalIn {
   0% {
-    scale: 0;
+    opacity: 0;
+    scale: 0.5;
   }
 
   100% {
+    opacity: 1;
     scale: 1;
   }
 }
