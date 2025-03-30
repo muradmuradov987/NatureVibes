@@ -29,10 +29,15 @@
       </div>
       <div>
         <h2 class="modal__title">Thanks for Upgrading!</h2>
-        <p>Your account has been successfully upgraded. <img src="../../public/images/plugins/crown.svg" alt=""></p>
+        <p>
+          Your account has been successfully upgraded.
+          <img src="../../public/images/plugins/crown.svg" alt="" />
+        </p>
       </div>
       <div class="modal__footer">
-        <button class="primary__btn" @click="myStore.closeModal()">Continue</button>
+        <button class="primary__btn" @click="myStore.closeModal()">
+          Continue
+        </button>
       </div>
     </div>
   </div>
@@ -51,7 +56,7 @@ const myStore = useStore();
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 1;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,7 +73,6 @@ const myStore = useStore();
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    z-index: 2;
     animation: modalIn 0.7s ease-in-out;
 
     .success-animation {
@@ -144,7 +148,7 @@ const myStore = useStore();
       justify-content: center;
       gap: 10px;
     }
-    img{
+    img {
       width: 25px;
       animation: pulse 1.5s ease-in-out infinite;
     }

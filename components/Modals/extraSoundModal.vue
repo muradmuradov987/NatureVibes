@@ -132,7 +132,7 @@ const addSounds = () => {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +148,6 @@ const addSounds = () => {
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
-    z-index: 2;
     animation: modalIn 0.7s ease-in-out;
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
