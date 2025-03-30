@@ -23,7 +23,6 @@ const myStore = useStore();
 
 onMounted(async () => {
     await myStore.getSoundsData();
-    // myStore.upgradeToPremium()
 });
 </script>
 

@@ -141,6 +141,9 @@ export const useStore = defineStore("store", () => {
   /////////////////////////////////////////////////
 
   //isPremium
+
+  const selectedPlan = ref("");
+
   const isPremium = ref(false);
 
   const upgradeToPremium = () => {
@@ -173,6 +176,7 @@ export const useStore = defineStore("store", () => {
     getExtraSoundsData, // Extra sound data (Func)
     tempExtraSound,
     isPremium, //premium
+    selectedPlan, //selected Plan
     upgradeToPremium, // Open the premium features
     modalTitle, //modal title
     showModal, //show modal
@@ -189,10 +193,8 @@ export const useStore = defineStore("store", () => {
     setTimer, // set timer (func)
     clearTimer, //clear time (func)
 
-
     //Auth
     isLoggedIn, //auth status
     formTitle, //show auth comp
-
   };
 });

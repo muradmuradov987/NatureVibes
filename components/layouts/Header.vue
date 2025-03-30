@@ -31,8 +31,7 @@
             <IconsSun />
             <IconsMoon />
           </div>
-
-          <div v-if="myStore.isLoggedIn">account</div>
+          <NuxtLink to="/account" v-if="myStore.isLoggedIn" class="account">N V</NuxtLink>
           <!--Login btn-->
           <NuxtLink v-else to="/login" class="loginBtn"> Login </NuxtLink>
         </div>
@@ -118,7 +117,7 @@ header {
         display: flex;
         align-items: center;
         position: relative;
-
+        z-index: 5;
         svg {
           width: 30px;
           fill: $primary;
@@ -211,6 +210,18 @@ header {
           border-bottom-left-radius: 8px;
         }
       }
+      .account {
+        border: 2px solid $primary;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        font-weight: 700;
+        color: $primary;
+      }
     }
   }
 }
@@ -285,7 +296,7 @@ header {
           display: flex;
           align-items: center;
           position: relative;
-
+          z-index: 10;
           svg {
             width: 25px;
           }
@@ -293,7 +304,6 @@ header {
           .lang__menu {
             width: 40px;
             left: -8px;
-
             .lang__item {
               font-size: 14px;
             }

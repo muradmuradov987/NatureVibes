@@ -1,13 +1,11 @@
 <template>
   <ModalsUpgradePaymentModal v-if="myStore.modalTitle == 'upgrade-payment'" />
+  <ModalsLoginModal v-if="myStore.modalTitle == 'loginModal'" />
+  <ModalsUpgradeSuccessModal v-if="myStore.modalTitle == 'upgrade-success'" />
   <div class="page__wrapper">
     <div class="container">
       <div class="upgrade__hero">
-        <NuxtImg
-          format="webp"
-          loading="lazy"
-          src="../public/images/upgrade.png"
-        />
+        <img src="../public/images/upgrade.png" alt="" />
         <div class="upgrade__hero-overlay">
           <h1>Upgrade to Premium and Keep Your Soul Calm</h1>
           <p>
@@ -24,49 +22,77 @@
         </div>
       </div>
     </div>
-    <section class="pricing">
-      <h2 class="pricing-title">Choose Your Plan</h2>
-      <div class="pricing-cards">
-        <div class="pricing-card">
-          <h3>Monthly Plan</h3>
-          <p class="price">$5.99 <span>/ Month</span></p>
-          <ul>
-            <li>✔️ Unlimited access to all sounds</li>
-            <li>✔️ High-quality audio</li>
-            <li>✔️ Custom playlists</li>
-            <li>✔️ No ads</li>
-            <li>✔️ Offline mode</li>
-          </ul>
-          <button class="btn-upgrade" @click="openUpgradeModal('monthly')">
-            Upgrade Now
-          </button>
-        </div>
-        <div class="pricing-card highlight">
-          <h3>Yearly Plan</h3>
-          <p class="price">$49.99 <span>/ Year</span></p>
-          <p class="discount">Save 30%!</p>
-          <ul>
-            <li>✔️ Everything in Monthly Plan</li>
-            <li>✔️ Exclusive premium sounds</li>
-            <li>✔️ Priority customer support</li>
-            <li>✔️ Early access to new features</li>
-          </ul>
-          <button class="btn-upgrade" @click="openUpgradeModal('yearly')">
-            Upgrade Now
-          </button>
+    <section class="pricing" :class="{ dark: myStore.isDarkMode }">
+      <div class="container">
+        <h2 class="pricing-title">Choose Your Plan</h2>
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <h3>Monthly Plan</h3>
+            <p class="price">$5.99 <span>/ Month</span></p>
+            <ul>
+              <li>✔️ Unlimited access to all sounds</li>
+              <li>✔️ High-quality audio</li>
+              <li>✔️ Custom playlists</li>
+              <li>✔️ No ads</li>
+              <li>✔️ Offline mode</li>
+            </ul>
+            <button class="btn-upgrade" @click="openUpgradeModal('monthly')">
+              Upgrade Now
+            </button>
+          </div>
+          <div class="pricing-card highlight">
+            <h3>Yearly Plan</h3>
+            <p class="price">$49.99 <span>/ Year</span></p>
+            <p class="discount">Save 30%!</p>
+            <ul>
+              <li>✔️ Everything in Monthly Plan</li>
+              <li>✔️ Exclusive premium sounds</li>
+              <li>✔️ Priority customer support</li>
+              <li>✔️ Early access to new features</li>
+            </ul>
+            <button class="btn-upgrade" @click="openUpgradeModal('yearly')">
+              Upgrade Now
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="features">
+    <section class="premium-benefits" :class="{ dark: myStore.isDarkMode }">
       <div class="container">
-        <h2>Premium Üyelik Avantajları</h2>
-        <ul>
-          <li>✅ Sınırsız ses erişimi (yağmur, dalga, orman, vs.)</li>
-          <li>✅ Reklamsız deneyim</li>
-          <li>✅ Özel ses kombinasyonları</li>
-          <li>✅ Uyku zamanlayıcısı</li>
-        </ul>
+        <h2>Why Upgrade to Premium?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-item color1">
+            <i class="fas fa-infinity"></i>
+            <h3>Unlimited Access</h3>
+            <p>Enjoy unrestricted access to all premium features.</p>
+          </div>
+          <div class="benefit-item color2">
+            <i class="fas fa-music"></i>
+            <h3>Exclusive Sounds</h3>
+            <p>Unlock a special library of high-quality relaxing sounds.</p>
+          </div>
+          <div class="benefit-item color3">
+            <i class="fas fa-headphones-alt"></i>
+            <h3>Ad-Free Experience</h3>
+            <p>Enjoy an uninterrupted, ad-free experience.</p>
+          </div>
+          <div class="benefit-item color4">
+            <i class="fas fa-cloud-download-alt"></i>
+            <h3>Offline Mode</h3>
+            <p>Download and listen without an internet connection.</p>
+          </div>
+          <div class="benefit-item color5">
+            <i class="fas fa-heart"></i>
+            <h3>Custom Playlists</h3>
+            <p>Create and save your own favorite sound combinations.</p>
+          </div>
+          <div class="benefit-item color6">
+            <i class="fas fa-user-shield"></i>
+            <h3>Secure Data</h3>
+            <p>Your information and preferences are safely stored.</p>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -76,11 +102,13 @@
 import { useStore } from "~/store/store";
 const myStore = useStore();
 
-const selectedPlan = ref("");
-
 const openUpgradeModal = (plan) => {
-  selectedPlan.value = plan;
-  myStore.modalTitle = "upgrade-payment";
+  if (!myStore.isLoggedIn) {
+    myStore.modalTitle = "loginModal";
+  } else {
+    myStore.selectedPlan = plan;
+    myStore.modalTitle = "upgrade-payment";
+  }
 };
 </script>
 
@@ -108,7 +136,7 @@ const openUpgradeModal = (plan) => {
     justify-content: center;
     flex-direction: column;
     gap: 20px;
-
+    z-index: 2;
     h1 {
       font-size: 30px;
       color: $white;
@@ -129,7 +157,7 @@ const openUpgradeModal = (plan) => {
   text-align: center;
   padding: 50px 0;
   .pricing-title {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 700;
     margin-bottom: 30px;
   }
@@ -204,26 +232,181 @@ const openUpgradeModal = (plan) => {
   }
 }
 
-.features {
-  margin-top: 40px;
-  text-align: left;
+.premium-benefits {
+  text-align: center;
+  border-radius: 10px;
+  padding: 50px 0;
 
   h2 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
 
-    li {
+  .benefit-item {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    position: relative;
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    p {
       font-size: 1rem;
-      padding: 8px 0;
-      background: #f5f5f5;
-      border-radius: 5px;
-      margin-bottom: 5px;
-      padding-left: 10px;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .color1 {
+    background: #6a57d5;
+  }
+  .color2 {
+    background: #f7b801;
+  }
+  .color3 {
+    background: #f35a5a;
+  }
+  .color4 {
+    background: #17a2b8;
+  }
+  .color5 {
+    background: #4caf50;
+  }
+  .color6 {
+    background: #ff7e67;
+  }
+}
+
+.dark {
+  .pricing {
+    .pricing-title {
+      color: $white;
+    }
+    .pricing-card {
+      background: unset;
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: $white;
+      }
+      .price {
+        span {
+          color: $white;
+        }
+      }
+
+      ul {
+        li {
+          color: $white;
+        }
+      }
+    }
+
+    .highlight {
+      border: 2px solid $primary;
+    }
+  }
+  .premium-benefits {
+    h2 {
+      color: white;
+    }
+  }
+}
+
+/*---------------Media Queries--------------*/
+@media (max-width: 767px) {
+  .upgrade__hero {
+    height: 300px;
+    margin-bottom: 0px;
+    .upgrade__hero-overlay {
+      padding: 20px;
+      h1 {
+        font-size: 20px;
+        text-align: center;
+      }
+      p {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+  .pricing {
+    padding: 30px 0;
+    .pricing-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-cards {
+      gap: 15px;
+    }
+    .pricing-card {
+      padding: 15px 10px;
+      border-radius: 8px;
+      max-width: 350px;
+
+      h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .price {
+        font-size: 16px;
+        span {
+          font-size: 14px;
+        }
+      }
+      .discount {
+        font-size: 14px;
+        border-radius: 4px;
+      }
+      ul {
+        margin: 10px 0;
+        li {
+          font-size: 12px;
+          padding: 5px 0;
+        }
+      }
+
+      .btn-upgrade {
+        padding: 10px;
+        font-size: 12px;
+        border-radius: 4px;
+      }
+    }
+  }
+  .premium-benefits {
+    border-radius: 8px;
+    padding: 30px 0;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .benefits-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .benefit-item {
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 14px;
+      }
     }
   }
 }

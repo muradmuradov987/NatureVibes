@@ -89,7 +89,7 @@ const login = () => {
   if (!loginErrors.email && !loginErrors.password) {
     loginFields.email = null;
     loginFields.password = null;
-    router.push("/");
+    router.push("/upgrade");
     myStore.isLoggedIn = true;
     myStore.isLoading = true;
     setTimeout(() => {
