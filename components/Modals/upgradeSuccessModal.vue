@@ -35,9 +35,7 @@
         </p>
       </div>
       <div class="modal__footer">
-        <button class="primary__btn" @click="myStore.closeModal()">
-          Continue
-        </button>
+        <button class="primary__btn" @click="router.push('/')">Continue</button>
       </div>
     </div>
   </div>
@@ -46,6 +44,8 @@
 <script setup>
 import { useStore } from "~/store/store";
 const myStore = useStore();
+//Router
+const router = useRouter();
 </script>
 
 <style lang="scss" scoped>

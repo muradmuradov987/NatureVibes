@@ -4,7 +4,7 @@
       <img class="crown" src="/images/plugins/crown.svg" alt="crown">
       <h2>Unlock Premium Features!</h2>
       <p class="info">Upgrade to enjoy exclusive sounds and unlimited access.
-        Starting at just <span>$4.99</span>/month, you can take your relaxation journey to the next level.</p>
+        Starting at just <span>$5.99</span>/month, you can take your relaxation journey to the next level.</p>
       <div class="benefits">
         <h4>Benefits include:</h4>
         <p>Over 15 Exclusive Sounds</p>

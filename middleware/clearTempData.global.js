@@ -6,5 +6,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
   myStore.clearTimer()
   myStore.closeModal()
   myStore.formTitle = 'login'
-
 });
