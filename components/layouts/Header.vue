@@ -18,14 +18,20 @@
             <IconsCrown /> <span>Upgrade</span>
           </NuxtLink>
           <!--Language-->
-          <div class="lang__container">
-            <iconsLanguage @click="showLangMenu()" />
-            <div class="lang__menu" v-if="langMenu">
-              <div class="lang__item active__lang">En</div>
-              <div class="lang__item">Ru</div>
-              <div class="lang__item">Tr</div>
+          <!-- <div class="lang__container">
+            <iconsLanguage />
+            <div class="lang__menu-container">
+              <div class="lang__menu">
+                <div class="lang__item active__lang">
+                  En
+                </div>
+                <div class="lang__item">
+                  Tr
+                </div>
+              </div>
             </div>
-          </div>
+          </div> -->
+
           <!--Dark mode-->
           <div class="theme__container" @click="myStore.toggleDarkMode">
             <IconsSun />
@@ -44,11 +50,6 @@
 import { useStore } from "~/store/store";
 const myStore = useStore();
 
-const langMenu = ref(false);
-
-const showLangMenu = () => {
-  langMenu.value = !langMenu.value;
-};
 </script>
 
 <style lang="scss" scoped>
@@ -118,6 +119,7 @@ header {
         align-items: center;
         position: relative;
         z-index: 5;
+
         svg {
           width: 30px;
           fill: $primary;
@@ -125,31 +127,42 @@ header {
           transition: 0.5s ease;
         }
 
-        .lang__menu {
-          width: 50px;
-          position: absolute;
-          top: 120%;
-          left: -10px;
-          background: $white;
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-
-          .lang__item {
-            text-align: center;
-            padding: 5px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            font-weight: 500;
-
-            &:hover {
-              background: $primary;
-              color: $white;
-            }
+        &:hover {
+          .lang__menu-container {
+            display: block;
           }
+        }
 
-          .active__lang {
-            border-left: 2px solid $primary-dark;
+        .lang__menu-container {
+          position: absolute;
+          top: 99%;
+          left: -30%;
+          padding-top: 10px;
+          display: none;
+
+          .lang__menu {
+            width: 50px;
+            background: $white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+
+            .lang__item {
+              text-align: center;
+              padding: 5px;
+              cursor: pointer;
+              transition: 0.3s ease;
+              font-weight: 500;
+
+              &:hover {
+                background: $primary;
+                color: $white;
+              }
+            }
+
+            .active__lang {
+              border-left: 2px solid $primary-dark;
+            }
           }
         }
       }
@@ -210,6 +223,7 @@ header {
           border-bottom-left-radius: 8px;
         }
       }
+
       .account {
         border: 2px solid $primary;
         width: 40px;
@@ -297,6 +311,7 @@ header {
           align-items: center;
           position: relative;
           z-index: 10;
+
           svg {
             width: 25px;
           }
@@ -304,6 +319,7 @@ header {
           .lang__menu {
             width: 40px;
             left: -8px;
+
             .lang__item {
               font-size: 14px;
             }

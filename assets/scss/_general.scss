@@ -29,6 +29,8 @@ body {
 .page__wrapper {
   min-height: calc(100vh - 310px);
   padding: 50px 0;
+  display: flex;
+  align-items: center;
 }
 
 .container {

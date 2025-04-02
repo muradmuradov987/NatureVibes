@@ -4,6 +4,18 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/scss/global.scss"],
 
+  app: {
+    head: {
+      title: 'Nature Vibes', 
+      htmlAttrs: {
+        lang: 'en',
+      },
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -13,7 +25,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ["@pinia/nuxt", "@nuxt/image"],
+  modules: ["@pinia/nuxt", "@nuxt/image",],
 
   nitro: {
     routeRules: {
