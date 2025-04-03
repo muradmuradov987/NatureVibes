@@ -119,7 +119,9 @@ const fetchData = async () => {
     if (!cardDetail.value) {
       router.push("/404");
     }
-    await myStore.getExtraSoundsData();
+    
+    
+    
   } catch (error) {
     console.error("Error fetching data:", error);
   }

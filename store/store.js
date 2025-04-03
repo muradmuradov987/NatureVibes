@@ -21,6 +21,7 @@ export const useStore = defineStore("store", () => {
     try {
       const fetchedData = await $fetch("/api/data");
       appData.value = fetchedData || [];
+      await getExtraSoundsData();
     } catch (error) {
       console.error("Fetch Error:", error);
     }
@@ -33,14 +34,6 @@ export const useStore = defineStore("store", () => {
     try {
       const fetchedData = await $fetch("/api/extraSoundData");
       extraSoundData.value = fetchedData || [];
-      //Check premium extra sounds
-      if (isPremium.value) {
-        extraSoundData.value.forEach((item) => {
-          item.extraSound.forEach((sound) => {
-            sound.isLocked = false;
-          });
-        });
-      }
     } catch (error) {
       console.error("Fetch Error:", error);
     }
@@ -154,6 +147,16 @@ export const useStore = defineStore("store", () => {
           card.isLocked = false;
         });
       });
+
+      // extra sounds
+      extraSoundData.value.forEach((item) => {
+        item.extraSound.forEach((sound) => {
+          sound.isLocked = false;
+        });
+      });
+    }
+
+    if (isPremium.value) {
     }
   };
 
